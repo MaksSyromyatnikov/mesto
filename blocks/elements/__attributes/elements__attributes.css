@@ -1,0 +1,14 @@
+.elements__attributes {
+  width: 100%;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 25px 20px 31px 21px;
+  background-color: #FFFFFF;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  flex-wrap: nowrap;
+  align-items: center;
+  color: black;
+  border-radius: 0 0 8px 8px;
+}
