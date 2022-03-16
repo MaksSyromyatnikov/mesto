@@ -5,3 +5,31 @@
   font-size: 18px;
   line-height: 22px;
 }
+
+@media screen and (min-width: 768px) {
+  .popup__title {
+    font-size: 20px;
+    line-height: 24px;
+    margin: 25px 24px 65px;
+    text-align: left;
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  .popup__title {
+    font-size: 22px;
+    line-height: 26px;
+    text-align: left;
+    margin: 28px 30px 62px;
+  }
+}
+
+@media screen and (min-width: 1280px) {
+  .popup__title {
+    font-weight: 900;
+    font-size: 24px;
+    line-height: 29px;
+    margin: 34px 64px 54px 36px;
+  }
+}
+

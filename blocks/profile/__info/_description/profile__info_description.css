@@ -4,4 +4,23 @@
   font-weight: 400;
   font-size: 14px;
   line-height: 17px;
+  text-align: center;
+}
+
+
+@media screen and (min-width: 768px) {
+
+}
+
+@media screen and (min-width: 1024px) {
+
+}
+
+@media screen and (min-width: 1280px) {
+  .profile__info_description {
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 22px;
+    text-align: left;
+  }
 }

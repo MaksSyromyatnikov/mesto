@@ -10,3 +10,21 @@
 .popup__input:last-of-type{
   margin: 0;
 }
+
+@media screen and (min-width: 768px) {
+  .popup__input {
+    line-height: 25px;
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  .popup__input {
+    line-height: 20px;
+  }
+}
+
+@media screen and (min-width: 1280px) {
+  .popup__input {
+    line-height: 17px;
+  }
+}
