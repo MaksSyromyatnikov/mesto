@@ -6,7 +6,6 @@ let closeButton = popupContainer.querySelector('.popup__close-button');
 let editButton = document.querySelector('.profile__edit-button');
 
 let formElement = document.querySelector('.popup__form');
-let fotmSaveButton = popup.querySelector('.popup__save-button')
 let nameInput = formElement.querySelector('.popup__input_type_name');
 let jobInput = formElement.querySelector('.popup__input_type_job');
 let profileName = document.querySelector('.profile__info_name');
