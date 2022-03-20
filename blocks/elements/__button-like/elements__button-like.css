@@ -3,7 +3,7 @@
   height: 19px;
   outline: 0;
   border: 0;
-  background: url(/images/elements/Vector.svg) no-repeat;
+  background: url(/images/elements/button-like.svg) no-repeat;
   flex-shrink: 0;
 }
 
@@ -11,3 +11,4 @@
   opacity: 0.5;
   cursor: pointer;
 }
+
