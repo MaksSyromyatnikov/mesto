@@ -1,4 +1,4 @@
-.profile__info_type-description {
+.profile__description {
   margin: 0;
   font-style: normal;
   font-weight: 400;
@@ -12,20 +12,20 @@
 
 
 @media screen and (min-width: 768px) {
-  .profile__info_type-description {
+  .profile__description {
     font-size: 15px;
   }
 }
 
 @media screen and (min-width: 1024px) {
-  .profile__info_type-description {
+  .profile__description {
     font-size: 16px;
     line-height: 20px;
   }
 }
 
 @media screen and (min-width: 1280px) {
-  .profile__info_type-description {
+  .profile__description {
     font-size: 18px;
     line-height: 22px;
   }
