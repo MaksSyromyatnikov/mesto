@@ -3,7 +3,7 @@
   padding: 0;
   border: 1px solid white;
   background-color: black;
-  background: url(/images/profile/add-button.svg) no-repeat 50%;
+  background: url(../../../images/profile/add-button.svg) no-repeat 50%;
   width: 100%;
   min-height: 52px;
   grid-area: add-button;

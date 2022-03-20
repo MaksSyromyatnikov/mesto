@@ -3,7 +3,7 @@
   height: 19px;
   outline: 0;
   border: 0;
-  background: url(/images/elements/button-like.svg) no-repeat;
+  background: url(../../../images/elements/button-like.svg) no-repeat;
   flex-shrink: 0;
 }
 
