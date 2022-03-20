@@ -2,15 +2,13 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-bottom: 20px;
-}
-
-.elements__item:last-of-type{
-  margin-bottom: 48px;
+  overflow: hidden;
 }
 
 @media screen and (min-width: 768px) {
-
+  .elements__item {
+    margin: 0;
+  }
 }
 
 @media screen and (min-width: 1024px) {
@@ -19,8 +17,6 @@
 
 @media screen and (min-width: 1280px) {
   .elements__item {
-    margin: 0;
-
   }
 
 }

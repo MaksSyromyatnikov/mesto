@@ -11,11 +11,14 @@
   align-items: center;
   color: black;
   border-radius: 0 0 8px 8px;
+  height: 79px;
 }
 
 
 @media screen and (min-width: 768px) {
+  .elements__attributes {
 
+  }
 }
 
 @media screen and (min-width: 1024px) {

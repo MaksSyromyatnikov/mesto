@@ -6,21 +6,28 @@
   background: url(/images/profile/add-button.svg) no-repeat 50%;
   width: 100%;
   min-height: 52px;
+  grid-area: add-button;
+  overflow: hidden;
 }
 
 
 @media screen and (min-width: 768px) {
+  .profile__add-button {
 
+  }
 }
 
 @media screen and (min-width: 1024px) {
-
+  .profile__add-button {
+    min-height: 50px;
+    width: 150px;
+    justify-self: flex-end;
+  }
 }
 
 @media screen and (min-width: 1280px) {
   .profile__add-button {
-    min-height: 50px;
-    width: 150px;
+
   }
 }
 
