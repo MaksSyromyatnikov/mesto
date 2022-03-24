@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="ru">
+
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -8,6 +9,7 @@
 
   <title>Mesto</title>
 </head>
+
 <body class="root">
   <div class="container">
     <header class="header">
@@ -24,65 +26,68 @@
         <button class="profile__add-button link"></button>
       </section>
       <section class="elements">
-        <div class="elements__item">
+        <article class="elements__item">
           <img class="elements__image" src="./images/elements/Karachaevsk.png" alt="Карачаево">
           <div class="elements__attributes">
             <h2 class="elements__title">Карачаевcк</h2>
-            <button class="elements__button-like"></button>
+            <button type="button" class="elements__button-like"></button>
           </div>
-        </div>
-        <div class="elements__item">
+        </article>
+        <article class="elements__item">
           <img class="elements__image" src="./images/elements/Elbrus.png" alt="Эльбрус">
           <div class="elements__attributes">
             <h2 class="elements__title">Гора Эльбрус</h2>
-            <button class="elements__button-like"></button>
+            <button type="button" class="elements__button-like"></button>
           </div>
-        </div>
-        <div class="elements__item">
+        </article>
+        <article class="elements__item">
           <img class="elements__image" src="./images/elements/Dombay.png" alt="Домбай">
           <div class="elements__attributes">
             <h2 class="elements__title">Домбай</h2>
-            <button class="elements__button-like"></button>
+            <button type="button" class="elements__button-like"></button>
           </div>
-        </div>
-        <div class="elements__item">
+        </article>
+        <article class="elements__item">
           <img class="elements__image" src="./images/elements/Elbrus.png" alt="Эльбрус">
           <div class="elements__attributes">
             <h2 class="elements__title">Гора Эльбрус</h2>
-            <button class="elements__button-like"></button>
+            <button type="button" class="elements__button-like"></button>
           </div>
-        </div>
-        <div class="elements__item">
+        </article>
+        <article class="elements__item">
           <img class="elements__image" src="./images/elements/Dombay.png" alt="Домбай">
           <div class="elements__attributes">
             <h2 class="elements__title">Домбай</h2>
-            <button class="elements__button-like"></button>
+            <button type="button" class="elements__button-like"></button>
           </div>
-        </div>
-        <div class="elements__item">
+        </article>
+        <article class="elements__item">
           <img class="elements__image" src="./images/elements/Karachaevsk.png" alt="Карачаевск">
           <div class="elements__attributes">
             <h2 class="elements__title">Карачаевск</h2>
-            <button class="elements__button-like"></button>
+            <button type="button" class="elements__button-like"></button>
           </div>
-        </div>
+        </article>
       </section>
       <div class="popup popup_hidden">
         <div class="popup__container">
           <button type='button' class="popup__close-button link"></button>
           <h2 class="popup__title">Редактировать профиль</h2>
           <form name="form" class="popup__form">
-            <input name="profile-name" class="popup__input popup__input_type_name" type="text">
-            <input name="profile-job" class="popup__input popup__input_type_job" type="text">
+            <input name="profile-name" class="popup__input popup__input_type_name" type="text"
+              placeholder="Введите имя">
+            <input name="profile-job" class="popup__input popup__input_type_job" type="text"
+              placeholder="Введите профессию">
             <button type="submit" class="popup__save-button link">Сохранить</button>
           </form>
         </div>
       </div>
     </main>
     <footer class="footer">
-      <img class="footer__logo" src="./images/footer/footer-Mesto-Russia.svg" alt="Логотип Место">
+      <p class="footer__copyright">© 2022 Mesto Russia</p>
     </footer>
   </div>
-<script src="./script/index.js"></script>
+  <script src="./script/index.js"></script>
 </body>
+
 </html>

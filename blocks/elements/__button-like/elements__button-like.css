@@ -12,3 +12,6 @@
   cursor: pointer;
 }
 
+.elements__button-like:active {
+  background: url(../../../../images/elements/Button-like-active.svg) no-repeat;
+}
