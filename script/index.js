@@ -22,8 +22,6 @@ function closePopup() {
 function onDocumentKeyUp(event) {
   if (event.key === "Escape") {
     closePopup();
-  } else {
-    handleProfileFormSubmit();
   }
 }
 
