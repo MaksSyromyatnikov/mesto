@@ -12,11 +12,14 @@ const profileDescription = document.querySelector(".profile__description");
 
 function openPopup() {
   popup.classList.add("popup_opened");
+  nameInput.value = profileName.textContent;
+  jobInput.value = profileDescription.textContent;
   document.addEventListener("keyup", onDocumentKeyUp);
 }
 
 function closePopup() {
   popup.classList.remove("popup_opened");
+  document.removeEventListener('keyup', onDocumentKeyUp);
 }
 
 function onDocumentKeyUp(event) {
