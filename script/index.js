@@ -7,8 +7,8 @@ const initialCards = [
     link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
   },
   {
-    name: 'Челябинская область',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
+    name: 'Балаклава',
+    link: 'https://images.unsplash.com/photo-1614707788967-e9422012cff1?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=627&q=80'
   },
   {
     name: 'Иваново',
@@ -36,9 +36,16 @@ const createCards = (cardName, cardSrc) => {
   const cardTemplate = document.querySelector('#card-template').content;
   const cardItem = cardTemplate.querySelector('.elements__item').cloneNode(true);
 
+  const likeButton = cardItem.querySelector('.elements__button-like');
+
+
   cardItem.querySelector('.elements__image').src = cardSrc;
   cardItem.querySelector('.elements__image').alt = cardName;
   cardItem.querySelector('.elements__title').textContent = cardName;
+
+  likeButton.addEventListener('click', () => {
+    likeButton.classList.toggle('elements__button-like_state-active');
+  })
 
   return cardItem;
 }
@@ -56,9 +63,6 @@ renderCard();
 
 
 
-
-
-
 // popup
 
 const popup = document.querySelector('.popup');
@@ -68,9 +72,10 @@ const popupAddCard = document.querySelector('.popup_type_add');
 const addButton = document.querySelector('.profile__add-button');
 
 // данные из добавления карточки
-const addFormElement = popupAddCard.querySelector(".popup__form");
-const placeNameInput = addFormElement.querySelector(".popup__input_type_place");
-const srcImageInput = addFormElement.querySelector(".popup__input_type_src");
+// const addFormElement = popupAddCard.querySelector(".popup__form");
+// const placeNameInput = addFormElement.querySelector(".popup__input_type_place");
+// const srcImageInput = addFormElement.querySelector(".popup__input_type_src");
+
 
 //Объявление Edit popup
 const popupEditProfile = document.querySelector(".popup_type_edit");
@@ -88,15 +93,16 @@ const jobInput = document.querySelector(".popup__input_type_job");
 
 // Функции: Открытия попапа общее, вставка значений, закрытие окон
 const openPopup = (modal) => {
-  modal.classList.add("popup_opened");
-  document.addEventListener("keyup", onDocumentKeyUp);
+  if (modal.classList.contains('popup_type_edit')){
+    nameInput.value = profileName.textContent;
+    jobInput.value = profileDescription.textContent;
+    modal.classList.add("popup_opened");
+    document.addEventListener("keyup", onDocumentKeyUp);
+  } else {
+    modal.classList.add("popup_opened");
+    document.addEventListener("keyup", onDocumentKeyUp);
+  }
 }
-
-// запись значений в инпут изменения профиля
-const editProfileValue = () => {
-  nameInput.value = profileName.textContent;
-  jobInput.value = profileDescription.textContent;
-};
 
 const closePopup = (modal) => {
     modal.classList.remove("popup_opened");
@@ -106,8 +112,10 @@ const closePopup = (modal) => {
 const onDocumentKeyUp = (event) => {
   if (event.key === "Escape") {
     closePopup();
+
   }
 }
+
 
 // обработка сохранения данных профиля
 const handleProfileFormSubmit = (evt) => {
@@ -121,7 +129,6 @@ const handleProfileFormSubmit = (evt) => {
 // Открытие окон
 editButton.addEventListener("click", () => {
   openPopup(popupEditProfile);
-  editProfileValue();
 });
 
 addButton.addEventListener('click', () => {
