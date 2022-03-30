@@ -32,23 +32,31 @@ const initialCards = [
 const cardTemplate = document.querySelector('#card-template').content;
 const cardsContainer = document.querySelector('.elements');
 
-function createCardDOM(name, url) {
-  console.log('Создаем разметку');
-  const cardItem = cardTemplate.querySelector('.elements__item').cloneNode(true);
-  const cardImage = cardItem.querySelector('.elements__image');
-  const cardTitle = cardItem.querySelector('.elements__title');
-
-  const cardElementLike = cardElement.querySelector('.elements__button-like');
-
-  cardImage.src = url;
-  cardImage.alt = name;
-  cardTitle.textContent = name;
-
-
-
+const createCards = (name, url) => {
+  `<article class="elements__item">
+  <button type="button" class="elements__trash button" value="trash"></button>
+  <img src="${url}" alt="Новая картинка" class="elements__image"/>
+  <div class="elements__attributes">
+    <h2 class="elements__title">${name}</h2>
+    <button type="button" class="elements__button-like" value="like"></button>
+  </div>
+  </article>`
+  const elementItem = document.createElement('div');
+  return elementItem.firstElementChild;
 }
 
+const cards = initialCards.map(el => {
+  return createCards(el.name, el.link);
+})
+cardsContainer.prepend();
 
+
+
+
+
+
+
+// popup
 
 const popup = document.querySelector('.popup');
 
