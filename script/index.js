@@ -87,11 +87,6 @@ const nameInput = document.querySelector(".popup__input_type_name");
 const jobInput = document.querySelector(".popup__input_type_job");
 
 
-
-
-
-
-
 // Функции: Открытия попапа общее, вставка значений, закрытие окон
 const openPopup = (modal) => {
   modal.classList.add("popup_opened");
