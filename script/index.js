@@ -59,7 +59,6 @@ renderCard();
 
 
 
-
 // popup
 
 const popup = document.querySelector('.popup');
