@@ -29,11 +29,11 @@ const initialCards = [
 ];
 
 // Темплейт карточек и контейнер
-const cardTemplate = document.querySelector('#card-template').content;
 const cardsContainer = document.querySelector('.elements');
 
 //создание каточек
 const createCards = (cardName, cardSrc) => {
+  const cardTemplate = document.querySelector('#card-template').content;
   const cardItem = cardTemplate.querySelector('.elements__item').cloneNode(true);
 
   cardItem.querySelector('.elements__image').src = cardSrc;
