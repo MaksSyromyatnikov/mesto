@@ -32,23 +32,27 @@ const initialCards = [
 const cardTemplate = document.querySelector('#card-template').content;
 const cardsContainer = document.querySelector('.elements');
 
-const createCards = (name, url) => {
-  `<article class="elements__item">
-  <button type="button" class="elements__trash button" value="trash"></button>
-  <img src="${url}" alt="Новая картинка" class="elements__image"/>
-  <div class="elements__attributes">
-    <h2 class="elements__title">${name}</h2>
-    <button type="button" class="elements__button-like" value="like"></button>
-  </div>
-  </article>`
-  const elementItem = document.createElement('div');
-  return elementItem.firstElementChild;
+//создание каточек
+const createCards = (cardName, cardSrc) => {
+  const cardItem = cardTemplate.querySelector('.elements__item').cloneNode(true);
+
+  cardItem.querySelector('.elements__image').src = cardSrc;
+  cardItem.querySelector('.elements__image').alt = cardName;
+  cardItem.querySelector('.elements__title').textContent = cardName;
+
+  return cardItem;
 }
 
-const cards = initialCards.map(el => {
-  return createCards(el.name, el.link);
+const allCards = initialCards.map(item => {
+  return createCards(item.name, item.link);
 })
-cardsContainer.prepend();
+
+
+const renderCard = () => {
+  cardsContainer.prepend(...allCards);
+}
+
+renderCard();
 
 
 
@@ -89,30 +93,30 @@ const jobInput = document.querySelector(".popup__input_type_job");
 
 
 // Функции: Открытия попапа общее, вставка значений, закрытие окон
-function openPopup(modal) {
+const openPopup = (modal) => {
   modal.classList.add("popup_opened");
   document.addEventListener("keyup", onDocumentKeyUp);
 }
 
 // запись значений в инпут изменения профиля
-function editProfileValue (){
+const editProfileValue = () => {
   nameInput.value = profileName.textContent;
   jobInput.value = profileDescription.textContent;
 };
 
-function closePopup(modal) {
+const closePopup = (modal) => {
     modal.classList.remove("popup_opened");
     document.removeEventListener('keyup', onDocumentKeyUp);
 }
 
-function onDocumentKeyUp(event) {
+const onDocumentKeyUp = (event) => {
   if (event.key === "Escape") {
     closePopup();
   }
 }
 
 // обработка сохранения данных профиля
-function handleProfileFormSubmit(evt) {
+const handleProfileFormSubmit = (evt) => {
   evt.preventDefault();
   profileName.textContent = nameInput.value;
   profileDescription.textContent = jobInput.value;
