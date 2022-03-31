@@ -31,38 +31,6 @@ const initialCards = [
 // Темплейт карточек и контейнер
 const cardsContainer = document.querySelector('.elements');
 
-//создание каточек
-const createCards = (cardName, cardSrc) => {
-  const cardTemplate = document.querySelector('#card-template').content;
-  const cardItem = cardTemplate.querySelector('.elements__item').cloneNode(true);
-
-  const likeButton = cardItem.querySelector('.elements__button-like');
-
-
-  cardItem.querySelector('.elements__image').src = cardSrc;
-  cardItem.querySelector('.elements__image').alt = cardName;
-  cardItem.querySelector('.elements__title').textContent = cardName;
-
-  likeButton.addEventListener('click', () => {
-    likeButton.classList.toggle('elements__button-like_state-active');
-  })
-
-  return cardItem;
-}
-
-const allCards = initialCards.map(item => {
-  return createCards(item.name, item.link);
-})
-
-
-const renderCard = () => {
-  cardsContainer.prepend(...allCards);
-}
-
-renderCard();
-
-
-
 // popup
 
 const popup = document.querySelector('.popup');
@@ -70,11 +38,6 @@ const popup = document.querySelector('.popup');
 //Объявление add popup
 const popupAddCard = document.querySelector('.popup_type_add');
 const addButton = document.querySelector('.profile__add-button');
-
-// данные из добавления карточки
-// const addFormElement = popupAddCard.querySelector(".popup__form");
-// const placeNameInput = addFormElement.querySelector(".popup__input_type_place");
-// const srcImageInput = addFormElement.querySelector(".popup__input_type_src");
 
 
 //Объявление Edit popup
@@ -90,6 +53,51 @@ const profileDescription = profile.querySelector(".profile__description");
 const nameInput = document.querySelector(".popup__input_type_name");
 const jobInput = document.querySelector(".popup__input_type_job");
 
+//создание каточек, лайк и удаление
+const createCards = (cardName, cardSrc) => {
+  const cardTemplate = document.querySelector('#card-template').content;
+  const cardItem = cardTemplate.querySelector('.elements__item').cloneNode(true);
+
+  const likeButton = cardItem.querySelector('.elements__button-like');
+  const trashButton = cardItem.querySelector('.elements__trash');
+
+
+  cardItem.querySelector('.elements__image').src = cardSrc;
+  cardItem.querySelector('.elements__image').alt = cardName;
+  cardItem.querySelector('.elements__title').textContent = cardName;
+
+  likeButton.addEventListener('click', () => {
+    likeButton.classList.toggle('elements__button-like_state-active');
+  })
+
+  trashButton.addEventListener('click', () => {
+    trashButton.closest('.elements__item').remove();
+  })
+
+  return cardItem;
+}
+
+const formElementAddImage = popupAddCard.querySelector('.popup__form');
+
+const addCard = (evt) => {
+  evt.preventDefault();
+  const cardTemplate = document.querySelector('#card-template').content;
+  const cardItem = cardTemplate.querySelector('.elements__item').cloneNode(true);
+
+  const placeNameInput = popupAddCard.querySelector('.popup__input_type_place');
+  const srcImageInput = popupAddCard.querySelector('.popup__input_type_src');
+
+}
+
+const allCards = initialCards.map(item => {
+  return createCards(item.name, item.link);
+})
+
+const renderCard = () => {
+  cardsContainer.prepend(...allCards);
+}
+
+renderCard();
 
 // Функции: Открытия попапа общее, вставка значений, закрытие окон
 const openPopup = (modal) => {
