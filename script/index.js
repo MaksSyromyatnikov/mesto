@@ -37,7 +37,11 @@ const popup = document.querySelector('.popup');
 
 //Объявление add popup
 const popupAddCard = document.querySelector('.popup_type_add');
+const formElementAddImage = popupAddCard.querySelector('.popup__form');
+const placeNameInput = popupAddCard.querySelector('.popup__input_type_place');
+const srcImageInput = popupAddCard.querySelector('.popup__input_type_src');
 const addButton = document.querySelector('.profile__add-button');
+const saveNewCardButton = document.querySelector('.popup__save-button_add-card');
 
 
 //Объявление Edit popup
@@ -71,33 +75,32 @@ const createCards = (cardName, cardSrc) => {
   })
 
   trashButton.addEventListener('click', () => {
-    trashButton.closest('.elements__item').remove();
+    cardItem.remove();
   })
 
   return cardItem;
 }
 
-const formElementAddImage = popupAddCard.querySelector('.popup__form');
 
+
+const renderCard = (newCard) => {
+  cardsContainer.append(newCard);
+}
+
+initialCards.forEach(item => {
+  const newCard = createCards(item.name, item.link)
+  renderCard(newCard);
+})
+// добавление новой картчоки
 const addCard = (evt) => {
   evt.preventDefault();
-  const cardTemplate = document.querySelector('#card-template').content;
-  const cardItem = cardTemplate.querySelector('.elements__item').cloneNode(true);
-
-  const placeNameInput = popupAddCard.querySelector('.popup__input_type_place');
-  const srcImageInput = popupAddCard.querySelector('.popup__input_type_src');
-
+  const newCard = createCards(placeNameInput.value, srcImageInput.value);
+  cardsContainer.prepend(newCard);
+  srcImageInput.value = '';
+  placeNameInput.value = '';
+  closePopup(popupAddCard);
 }
 
-const allCards = initialCards.map(item => {
-  return createCards(item.name, item.link);
-})
-
-const renderCard = () => {
-  cardsContainer.prepend(...allCards);
-}
-
-renderCard();
 
 // Функции: Открытия попапа общее, вставка значений, закрытие окон
 const openPopup = (modal) => {
@@ -155,3 +158,4 @@ popupAddCard.querySelector('.popup__close-button').addEventListener('click', () 
 //сохранение данных профиля
 
 popupEditProfile.addEventListener('submit', handleProfileFormSubmit);
+popupAddCard.addEventListener('submit', addCard);
