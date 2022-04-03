@@ -1,6 +1,5 @@
 "use strict";
 
-
 // Темплейт карточек и контейнер
 const cardTemplate = document.querySelector('#card-template').content;
 const cardsContainer = document.querySelector('.elements');
@@ -66,6 +65,7 @@ initialCards.forEach(item => {
   const newCard = createCards(item.name, item.link)
   renderCard(newCard);
 })
+
 // добавление новой картчоки
 const addCard = (evt) => {
   evt.preventDefault();
@@ -78,15 +78,8 @@ const addCard = (evt) => {
 
 // Функции: Открытия попапа общее, вставка значений, закрытие окон
 const openPopup = (modal) => {
-  if (modal.classList.contains('popup_type_edit')){
-    nameInput.value = profileName.textContent;
-    jobInput.value = profileDescription.textContent;
-    modal.classList.add("popup_opened");
-    document.addEventListener("keyup", onDocumentKeyUp);
-  } else {
-    modal.classList.add("popup_opened");
-    document.addEventListener("keyup", onDocumentKeyUp);
-  }
+  modal.classList.add("popup_opened");
+  document.addEventListener("keyup", onDocumentKeyUp);
 }
 
 const closePopup = (modal) => {
@@ -96,11 +89,10 @@ const closePopup = (modal) => {
 
 const onDocumentKeyUp = (event) => {
   if (event.key === "Escape") {
-    const activePopup= document.querySelector('.popup_opened');
+    const activePopup = document.querySelector('.popup_opened');
     closePopup(activePopup);
   }
 }
-
 
 // обработка сохранения данных профиля
 const handleProfileFormSubmit = (evt) => {
@@ -110,9 +102,10 @@ const handleProfileFormSubmit = (evt) => {
   closePopup(popupEditProfile);
 }
 
-
 // Открытие окон
 buttonEdit.addEventListener("click", () => {
+  nameInput.value = profileName.textContent;
+  jobInput.value = profileDescription.textContent;
   openPopup(popupEditProfile);
 });
 
