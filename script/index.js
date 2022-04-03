@@ -48,6 +48,13 @@ const saveNewCardButton = document.querySelector('.popup__save-button_add-card')
 const popupEditProfile = document.querySelector(".popup_type_edit");
 const editButton = document.querySelector(".profile__edit-button");
 
+//объявление модального окна с картинкой
+const popupImage = document.querySelector('.popup_type_image');
+const popupImageFull = popupImage.querySelector('.popup__image');
+const popupImageSubtitle = popupImage.querySelector('.popup__subtitle');
+
+
+
 
 //Объявление Данных из профиля
 const profile = document.querySelector('.profile');
@@ -76,6 +83,13 @@ const createCards = (cardName, cardSrc) => {
 
   trashButton.addEventListener('click', () => {
     cardItem.remove();
+  })
+
+  cardItem.querySelector('.elements__image').addEventListener('click', () => {
+    popupImageFull.src = cardSrc;
+    popupImageFull.alt = cardName;
+    popupImageSubtitle.textContent = cardName;
+    openPopup(popupImage);
   })
 
   return cardItem;
@@ -154,6 +168,10 @@ popupEditProfile.querySelector('.popup__close-button').addEventListener('click',
 popupAddCard.querySelector('.popup__close-button').addEventListener('click', () => {
   closePopup(popupAddCard);
 });
+
+popupImage.querySelector('.popup__close-button').addEventListener('click', () => {
+  closePopup(popupImage);
+})
 
 //сохранение данных профиля
 
