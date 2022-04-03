@@ -5,6 +5,7 @@
   border: 0;
   background: url(../../../images/elements/button-like.svg) no-repeat;
   flex-shrink: 0;
+  transition: all .4s ease-in-out;
 }
 
 .elements__button-like:hover {
