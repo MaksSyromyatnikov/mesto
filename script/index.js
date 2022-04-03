@@ -1,60 +1,24 @@
 "use strict";
 
-// объявление массива карточек
-const initialCards = [
-  {
-    name: 'Архыз',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
-  },
-  {
-    name: 'Ласточкино гнездо',
-    link: 'https://images.unsplash.com/photo-1624571149875-59a402116d88?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1632&q=80'
-  },
-  {
-    name: 'Иваново',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'
-  },
-  {
-    name: 'Камчатка',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
-  },
-  {
-    name: 'Холмогорский район',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
-  },
-  {
-    name: 'Байкал',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
-  }
-];
 
 // Темплейт карточек и контейнер
+const cardTemplate = document.querySelector('#card-template').content;
 const cardsContainer = document.querySelector('.elements');
-
-// popup
-
-const popup = document.querySelector('.popup');
 
 //Объявление add popup
 const popupAddCard = document.querySelector('.popup_type_add');
-const formElementAddImage = popupAddCard.querySelector('.popup__form');
 const placeNameInput = popupAddCard.querySelector('.popup__input_type_place');
 const srcImageInput = popupAddCard.querySelector('.popup__input_type_src');
-const addButton = document.querySelector('.profile__add-button');
-const saveNewCardButton = document.querySelector('.popup__save-button_add-card');
-
+const buttonAdd = document.querySelector('.profile__add-button');
 
 //Объявление Edit popup
 const popupEditProfile = document.querySelector(".popup_type_edit");
-const editButton = document.querySelector(".profile__edit-button");
+const buttonEdit = document.querySelector(".profile__edit-button");
 
 //объявление модального окна с картинкой
 const popupImage = document.querySelector('.popup_type_image');
 const popupImageFull = popupImage.querySelector('.popup__image');
 const popupImageSubtitle = popupImage.querySelector('.popup__subtitle');
-
-
-
 
 //Объявление Данных из профиля
 const profile = document.querySelector('.profile');
@@ -66,15 +30,14 @@ const jobInput = document.querySelector(".popup__input_type_job");
 
 //создание каточек, лайк и удаление
 const createCards = (cardName, cardSrc) => {
-  const cardTemplate = document.querySelector('#card-template').content;
   const cardItem = cardTemplate.querySelector('.elements__item').cloneNode(true);
+  const cardItemImage =  cardItem.querySelector('.elements__image');
 
   const likeButton = cardItem.querySelector('.elements__button-like');
   const trashButton = cardItem.querySelector('.elements__trash');
 
-
-  cardItem.querySelector('.elements__image').src = cardSrc;
-  cardItem.querySelector('.elements__image').alt = cardName;
+  cardItemImage.setAttribute('src', cardSrc);
+  cardItemImage.setAttribute('alt', cardName);
   cardItem.querySelector('.elements__title').textContent = cardName;
 
   likeButton.addEventListener('click', () => {
@@ -85,7 +48,7 @@ const createCards = (cardName, cardSrc) => {
     cardItem.remove();
   })
 
-  cardItem.querySelector('.elements__image').addEventListener('click', () => {
+  cardItemImage.addEventListener('click', () => {
     popupImageFull.src = cardSrc;
     popupImageFull.alt = cardName;
     popupImageSubtitle.textContent = cardName;
@@ -94,8 +57,6 @@ const createCards = (cardName, cardSrc) => {
 
   return cardItem;
 }
-
-
 
 const renderCard = (newCard) => {
   cardsContainer.append(newCard);
@@ -136,7 +97,6 @@ const closePopup = (modal) => {
 const onDocumentKeyUp = (event) => {
   if (event.key === "Escape") {
     const activePopup= document.querySelector('.popup_opened');
-    //console.log('успех');
     closePopup(activePopup);
   }
 }
@@ -152,11 +112,11 @@ const handleProfileFormSubmit = (evt) => {
 
 
 // Открытие окон
-editButton.addEventListener("click", () => {
+buttonEdit.addEventListener("click", () => {
   openPopup(popupEditProfile);
 });
 
-addButton.addEventListener('click', () => {
+buttonAdd.addEventListener('click', () => {
   openPopup(popupAddCard);
 });
 
