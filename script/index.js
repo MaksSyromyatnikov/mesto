@@ -115,7 +115,6 @@ const addCard = (evt) => {
   closePopup(popupAddCard);
 }
 
-
 // Функции: Открытия попапа общее, вставка значений, закрытие окон
 const openPopup = (modal) => {
   if (modal.classList.contains('popup_type_edit')){
@@ -136,8 +135,9 @@ const closePopup = (modal) => {
 
 const onDocumentKeyUp = (event) => {
   if (event.key === "Escape") {
-    closePopup(event);
-
+    const activePopup= document.querySelector('.popup_opened');
+    //console.log('успех');
+    closePopup(activePopup);
   }
 }
 
