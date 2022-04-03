@@ -1,6 +1,8 @@
 .popup__form {
   background-color: #fff;
   margin: auto;
+  min-width: 282px;
+  box-sizing: border-box;
   border-radius: 8px 8px;
   display: flex;
   flex-direction: column;
