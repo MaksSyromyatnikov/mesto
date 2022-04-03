@@ -1,26 +1,28 @@
 .popup__form {
   background-color: #fff;
+  margin: auto;
+  border-radius: 8px 8px;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  margin: 0 22px 25px;
+  padding: 0 22px 25px;
 }
 
 @media screen and (min-width: 768px) {
   .popup__form {
-    margin: 0 24px 30px;
+    padding: 0 24px 30px;
   }
 }
 
 @media screen and (min-width: 1024px) {
   .popup__form {
-    margin: 0 30px 48px;
+    padding: 0 30px 48px;
   }
 }
 
 @media screen and (min-width: 1280px) {
   .popup__form {
-    margin: 0 36px 48px;
+    padding: 0 36px 48px;
   }
 }
 
