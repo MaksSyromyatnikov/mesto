@@ -1,9 +1,9 @@
-.button:hover {
+.button:hover:enabled {
   opacity: 60%;
   cursor: pointer;
   transition: all .4s ease-in-out;
 }
 
-.button:active {
+.button:active:enabled {
   cursor: pointer;
 }

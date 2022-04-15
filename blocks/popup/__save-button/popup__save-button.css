@@ -10,10 +10,6 @@
   line-height: 17px;
 }
 
-.popup__save-button:hover {
-  background: rgba(0,0,0,.8);
-  cursor: pointer;
-}
 
 @media screen and (min-width: 768px) {
 
@@ -32,5 +28,6 @@
     min-height: 50px;
     font-size: 18px;
     line-height: 22px;
+    margin: 48px 0 0;
   }
 }
