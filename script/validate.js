@@ -8,7 +8,7 @@ const configValidation = {
   errorClass: 'popup__error'
 }
 
-// включение валидации всех форм
+// включение валидации всех форм, используем селектор с rest оператором
 const enableValidation = ({formSelector, ...rest}) => {
   const formList = Array.from(document.querySelectorAll(formSelector));
 
@@ -21,14 +21,13 @@ const enableValidation = ({formSelector, ...rest}) => {
   });
 };
 
-// слушатели инпутов
+// слушатели инпутов + изначальный state кнопок
 const setEventListeners = (formElement, {inputSelector, submitButtonSelector, disableButtonClass, ...rest}) => {
   const inputList = Array.from(formElement.querySelectorAll(inputSelector));
   const buttonElement = formElement.querySelector(submitButtonSelector);
 
-
   inputList.forEach((inputElement) => {
-    toggleButtonState(inputList, buttonElement);
+    toggleButtonState(inputList, buttonElement, disableButtonClass);
 
     inputElement.addEventListener('input', (evt) => {
       checkInputValidity(formElement, inputElement, {...rest});
@@ -67,10 +66,10 @@ const toggleButtonState = (inputList, buttonElement, disableButtonClass) => {
 // показ и скрытие ошибки
 const showInputError = (formElement, inputElement, errorMessage, inputErrorClass, errorClass) => {
   const  errorElement = formElement.querySelector(`#${inputElement.id}-error`);
-  console.log(inputElement);
+  //console.log(inputElement);
   inputElement.classList.add(inputErrorClass);
   errorElement.textContent = errorMessage;
-  console.log(errorElement);
+  //console.log(errorElement);
   errorElement.classList.add(errorClass);
 };
 
