@@ -4,6 +4,7 @@
 const cardTemplate = document.querySelector('#card-template').content;
 const cardsContainer = document.querySelector('.elements');
 
+
 //Объявление add popup
 const popupAddCard = document.querySelector('.popup_type_add');
 const placeNameInput = popupAddCard.querySelector('.popup__input_type_place');
@@ -74,17 +75,34 @@ const addCard = (evt) => {
   srcImageInput.value = '';
   placeNameInput.value = '';
   closePopup(popupAddCard);
+  disableSubmitButtonOnStart();
+}
+
+const disableSubmitButtonOnStart = () => {
+  const submitButton = popupAddCard.querySelector('.popup__save-button');
+  submitButton.classList.add('popup__save-button_disabled');
+  submitButton.setAttribute('disabled', 'disabled');
 }
 
 // Функции: Открытия попапа общее, вставка значений, закрытие окон
 const openPopup = (modal) => {
   modal.classList.add("popup_opened");
   document.addEventListener("keyup", onDocumentKeyUp);
+  modal.addEventListener('click', closeByClickOverlayPopup);
 }
 
 const closePopup = (modal) => {
-    modal.classList.remove("popup_opened");
-    document.removeEventListener('keyup', onDocumentKeyUp);
+  modal.classList.remove("popup_opened");
+  document.removeEventListener('keyup', onDocumentKeyUp);
+  modal.removeEventListener('click', closeByClickOverlayPopup);
+}
+
+const closeByClickOverlayPopup = (evt) => {
+  const activePopup = document.querySelector('.popup_opened');
+  if (evt.target !== evt.currentTarget){
+    return;
+  }
+  closePopup(activePopup);
 }
 
 const onDocumentKeyUp = (event) => {
@@ -115,6 +133,7 @@ buttonAdd.addEventListener('click', () => {
 
 
 //Закрытие окон
+
 popupEditProfile.querySelector('.popup__close-button').addEventListener('click', () => {
   closePopup(popupEditProfile);
 });

@@ -10,18 +10,18 @@
 
 @media screen and (min-width: 768px) {
   .popup__error {
-    max-width: 320px;
+    max-width: 272px;
   }
 }
 
 @media screen and (min-width: 1024px) {
   .popup__error {
-    max-width: 400px;
+    max-width: 340px;
   }
 }
 
 @media screen and (min-width: 1280px) {
   .popup__error {
-    max-width: 430px;
+    max-width: 358px;
   }
 }

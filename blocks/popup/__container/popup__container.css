@@ -2,7 +2,6 @@
   margin: auto;
   position: relative;
   min-width: 240px;
-  max-width: 430px;
 }
 
 @media screen and (min-width: 768px) {

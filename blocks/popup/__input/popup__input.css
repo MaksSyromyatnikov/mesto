@@ -7,6 +7,10 @@
   margin: 0;
 }
 
+.popup__input:focus{
+  outline: 3px solid rgb(71, 192, 248);
+}
+
 
 @media screen and (min-width: 768px) {
   .popup__input {
