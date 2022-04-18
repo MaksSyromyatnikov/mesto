@@ -7,12 +7,14 @@ const cardsContainer = document.querySelector('.elements');
 
 //Объявление add popup
 const popupAddCard = document.querySelector('.popup_type_add');
+const popupFormAddCard = popupAddCard.querySelector('.popup__form');
 const placeNameInput = popupAddCard.querySelector('.popup__input_type_place');
 const srcImageInput = popupAddCard.querySelector('.popup__input_type_src');
 const buttonAdd = document.querySelector('.profile__add-button');
 
 //Объявление Edit popup
 const popupEditProfile = document.querySelector(".popup_type_edit");
+const popupFormEditProfile = popupEditProfile.querySelector('.popup__form');
 const buttonEdit = document.querySelector(".profile__edit-button");
 
 //объявление модального окна с картинкой
@@ -72,8 +74,7 @@ const addCard = (evt) => {
   evt.preventDefault();
   const newCard = createCards(placeNameInput.value, srcImageInput.value);
   cardsContainer.prepend(newCard);
-  srcImageInput.value = '';
-  placeNameInput.value = '';
+  srcImageInput.parentNode.reset();
   closePopup(popupAddCard);
   disableSubmitButtonOnStart();
 }
@@ -87,25 +88,23 @@ const disableSubmitButtonOnStart = () => {
 // Функции: Открытия попапа общее, вставка значений, закрытие окон
 const openPopup = (modal) => {
   modal.classList.add("popup_opened");
-  document.addEventListener("keyup", onDocumentKeyUp);
+  document.addEventListener("keyup", closeByEscape);
   modal.addEventListener('click', closeByClickOverlayPopup);
 }
 
 const closePopup = (modal) => {
   modal.classList.remove("popup_opened");
-  document.removeEventListener('keyup', onDocumentKeyUp);
+  document.removeEventListener('keyup', closeByEscape);
   modal.removeEventListener('click', closeByClickOverlayPopup);
 }
 
 const closeByClickOverlayPopup = (evt) => {
-  const activePopup = document.querySelector('.popup_opened');
-  if (evt.target !== evt.currentTarget){
-    return;
+  if (evt.target === evt.currentTarget){
+    closePopup(evt.target );
   }
-  closePopup(activePopup);
 }
 
-const onDocumentKeyUp = (event) => {
+const closeByEscape = (event) => {
   if (event.key === "Escape") {
     const activePopup = document.querySelector('.popup_opened');
     closePopup(activePopup);
@@ -148,5 +147,5 @@ popupImage.querySelector('.popup__close-button').addEventListener('click', () =>
 
 //сохранение данных профиля
 
-popupEditProfile.addEventListener('submit', handleProfileFormSubmit);
-popupAddCard.addEventListener('submit', addCard);
+popupFormEditProfile.addEventListener('submit', handleProfileFormSubmit);
+popupFormAddCard.addEventListener('submit', addCard);
