@@ -7,7 +7,6 @@ class Card {
   constructor(data, imageSelector, templateSelector){
     this._title = data.name;
     this._image = data.link;
-    this._handleOpenImage = openImagePopup;
     this._imageSelector = imageSelector;
     this._templateSelector = templateSelector;
   }
