@@ -39,6 +39,7 @@ const configValidation = {
   errorClass: 'popup__error'
 }
 
+// 2 формы валидации из класса
 const addCardValidation = new FormValidator(configValidation, popupAddCard);
 const profileEditValidation = new FormValidator(configValidation, popupEditProfile);
 
@@ -55,6 +56,7 @@ initialCards.reverse().forEach((cardData) => {
   renderCard(card.generateCard(), cardsContainer);
 })
 
+//Добавление карточки
 const handleFormAddSubmit = (evt) => {
   evt.preventDefault();
   const cardData = {
@@ -66,20 +68,18 @@ const handleFormAddSubmit = (evt) => {
   renderCard(card.generateCard(), cardsContainer);
   popupFormAddCard.reset();
   closePopup(popupAddCard);
-  addCardValidation._disableSubmitButton();
 }
 
 // Изменение профиля
-
-const editProfile = (evt) => {
+const handleFormEditProfile = (evt) => {
   evt.preventDefault();
 
   profileName.textContent = nameInput.value;
   profileDescription.textContent = jobInput.value;
-
   closePopup(popupEditProfile);
 }
 
+//переносим в попап данные профиля
 const fillProfileInputs = () => {
   nameInput.value = profileName.textContent;
   jobInput.value = profileDescription.textContent;
@@ -98,6 +98,6 @@ popups.forEach((popup) => {
 });
 
 // сабмиты
-popupFormEditProfile.addEventListener('submit', editProfile);
+popupFormEditProfile.addEventListener('submit', handleFormEditProfile);
 popupFormAddCard.addEventListener('submit', handleFormAddSubmit);
 

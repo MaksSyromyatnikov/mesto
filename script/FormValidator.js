@@ -38,18 +38,22 @@ export class FormValidator {
     })
   }
 
-  _disableSubmitButton = () => {
+  disableSubmitButton = () => {
     this._ButtonSubmitForm.classList.add(this._obj.disableButtonClass);
     this._ButtonSubmitForm.setAttribute('disabled', true);
+  }
+
+  enableSubmitButton = () => {
+    this._ButtonSubmitForm.classList.remove(this._obj.disableButtonClass);
+    this._ButtonSubmitForm.removeAttribute('disabled');
   }
 
     // изменение состояния кнопки
   _toggleButtonState = () => {
     if (this._hasInvalidInput()){
-      this._disableSubmitButton();
+      this.disableSubmitButton();
     } else {
-      this._ButtonSubmitForm.classList.remove(this._obj.disableButtonClass);
-      this._ButtonSubmitForm.removeAttribute('disabled', 'disabled');
+      this.enableSubmitButton();
     }
   }
 

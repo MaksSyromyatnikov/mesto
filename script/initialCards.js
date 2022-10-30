@@ -9,8 +9,8 @@ export const initialCards = [
     link: 'https://images.unsplash.com/photo-1594766508832-b111829239cd?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=473&q=80'
   },
   {
-    name: 'Торонто',
-    link: 'https://images.unsplash.com/photo-1606542758304-820b04394ac2?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=464&q=80'
+    name: 'Лондон',
+    link: 'https://images.unsplash.com/photo-1536890992765-f42a1ee1e2a8?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=327&q=80'
   },
   {
     name: 'Ереван',
