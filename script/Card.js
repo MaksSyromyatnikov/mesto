@@ -4,9 +4,8 @@ export {Card};
 import {openImagePopup} from './utils.js';
 
 class Card {
-  constructor(data, imageSelector, templateSelector){
-    this._title = data.name;
-    this._image = data.link;
+  constructor(cardData, imageSelector, templateSelector){
+    this._cardData = cardData;
     this._imageSelector = imageSelector;
     this._templateSelector = templateSelector;
   }
@@ -27,10 +26,10 @@ class Card {
 
     const image = this._element.querySelector(this._imageSelector);
 
-    image.src = this._image;
-    image.alt = this.title;
+    image.src = this._cardData.link;
+    image.alt = this._cardData.name;
 
-    this._element.querySelector('.elements__title').textContent = this._title;
+    this._element.querySelector('.elements__title').textContent = this._cardData.name;
 
     return this._element;
   }
@@ -45,7 +44,7 @@ class Card {
   }
 
   _handleOpenImage() {
-    openImagePopup (this._title, this._image);
+    openImagePopup (this._cardData.name, this._cardData.link);
   }
 
   _setEventListeners() {
@@ -57,7 +56,7 @@ class Card {
       this._buttonLikeCard();
     });
     this._element.querySelector('.elements__image').addEventListener('click', () => {
-      this._handleOpenImage(this._title, this._image);
+      this._handleOpenImage(this._cardData.name, this._cardData.link);
     })
   }
 }

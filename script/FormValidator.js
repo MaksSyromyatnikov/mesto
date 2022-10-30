@@ -26,9 +26,9 @@ export class FormValidator {
   // проверка валидности инпутов
   _checkInputValidity = (inputElement) => {
     if (!inputElement.validity.valid) {
-      showInputError(inputElement, inputElement.validationMessage);
+      this._showInputError(inputElement, inputElement.validationMessage);
     } else {
-      hideInputError(inputElement);
+      this._hideInputError(inputElement);
     }
   };
 
@@ -40,7 +40,7 @@ export class FormValidator {
 
   _disableSubmitButton = () => {
     this._ButtonSubmitForm.classList.add(this._obj.disableButtonClass);
-    this._ButtonSubmitForm.setAttribute('disabled', 'disabled');
+    this._ButtonSubmitForm.setAttribute('disabled', true);
   }
 
     // изменение состояния кнопки
@@ -48,8 +48,8 @@ export class FormValidator {
     if (this._hasInvalidInput()){
       this._disableSubmitButton();
     } else {
-      buttonElement.classList.remove(this._obj.disableButtonClass);
-      buttonElement.removeAttribute('disabled', 'disabled');
+      this._ButtonSubmitForm.classList.remove(this._obj.disableButtonClass);
+      this._ButtonSubmitForm.removeAttribute('disabled', 'disabled');
     }
   }
 

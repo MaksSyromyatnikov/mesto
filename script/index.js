@@ -39,42 +39,43 @@ const configValidation = {
   errorClass: 'popup__error'
 }
 
-const renderCards = () => {
-  initialCards.forEach((item) => {
-    const card = new Card (item, '.elements__image', '#card-template');
-    const cardElement = card.generateCard();
-
-    cardsContainer.append(cardElement);
-  })
-}
-renderCards();
-
 const addCardValidation = new FormValidator(configValidation, popupAddCard);
 const profileEditValidation = new FormValidator(configValidation, popupEditProfile);
 
 addCardValidation.enableValidation();
 profileEditValidation.enableValidation();
 
-// Добавление новой карточки
-const addNewCard = (evt) => {
+
+const renderCard = (card, container) => {
+  container.prepend(card);
+}
+
+initialCards.reverse().forEach((cardData) => {
+  const card = new Card (cardData,'.elements__image', '#card-template');
+  renderCard(card.generateCard(), cardsContainer);
+})
+
+const handleFormAddSubmit = (evt) => {
   evt.preventDefault();
+  const cardData = {
+      name: placeNameInput.value,
+      link: srcImageInput.value
+  }
 
-  const title = placeNameInput.value;
-  const image = srcImageInput.value;
-  renderCards();
-
-  popupAddCard.reset();
+  const card = new Card(cardData, '.elements__image', '#card-template');
+  renderCard(card.generateCard(), cardsContainer);
+  popupFormAddCard.reset();
   closePopup(popupAddCard);
-  addCardValidation.disableButtonClass();
-};
+  addCardValidation._disableSubmitButton();
+}
 
 // Изменение профиля
 
 const editProfile = (evt) => {
   evt.preventDefault();
 
-  const profileName = nameInput.value;
-  const profileDescription = jobInput.value;
+  profileName.textContent = nameInput.value;
+  profileDescription.textContent = jobInput.value;
 
   closePopup(popupEditProfile);
 }
@@ -85,11 +86,9 @@ const fillProfileInputs = () => {
   openPopup(popupEditProfile);
 }
 
-// edit button listener
 buttonEdit.addEventListener('click', () => fillProfileInputs(popupEditProfile));
-// add button listener
 buttonAdd.addEventListener('click', () => openPopup(popupAddCard));
-// close popup button listener
+
 popups.forEach((popup) => {
   popup.addEventListener('click', (evt) => {
     if (evt.target.classList.contains('popup__close-button')) {
@@ -99,6 +98,6 @@ popups.forEach((popup) => {
 });
 
 // сабмиты
-buttonEdit.addEventListener('submit', editProfile);
-buttonAdd.addEventListener('submit', addNewCard);
+popupFormEditProfile.addEventListener('submit', editProfile);
+popupFormAddCard.addEventListener('submit', handleFormAddSubmit);
 
