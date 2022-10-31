@@ -13,20 +13,10 @@ export const openPopup = (modal) => {
 }
 
 export const closePopup = (modal) => {
-  //все инпуты
-  const allInputs = Array.from(modal.querySelectorAll('.popup__input'));
-
   modal.classList.remove('popup_opened');
 
   document.removeEventListener('keyup', closeByEscape);
   modal.removeEventListener('click', closeByClickOverlay);
-
-  //Очищаем от ошибок
-  allInputs.forEach((inputElement) => {
-    const errorElement = document.getElementById(`${inputElement.id}-error`);
-    inputElement.classList.remove('popup__input_type_error');
-    errorElement.textContent = '';
-  });
 };
 
   // close popup by escape
@@ -37,7 +27,7 @@ export const closeByEscape = (evt) => {
   }
 };
 
-// close popup by click on popup overlay
+// закрытие по клику оверлея
 export const closeByClickOverlay = (evt) => {
   if (evt.target === evt.currentTarget) {
     const activePopup = document.querySelector('.popup_opened');

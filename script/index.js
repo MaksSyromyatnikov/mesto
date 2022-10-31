@@ -56,6 +56,7 @@ initialCards.reverse().forEach((cardData) => {
   renderCard(card.generateCard(), cardsContainer);
 })
 
+
 //Добавление карточки
 const handleFormAddSubmit = (evt) => {
   evt.preventDefault();
@@ -66,7 +67,6 @@ const handleFormAddSubmit = (evt) => {
 
   const card = new Card(cardData, '.elements__image', '#card-template');
   renderCard(card.generateCard(), cardsContainer);
-  popupFormAddCard.reset();
   closePopup(popupAddCard);
 }
 
@@ -79,15 +79,22 @@ const handleFormEditProfile = (evt) => {
   closePopup(popupEditProfile);
 }
 
+
 //переносим в попап данные профиля
 const fillProfileInputs = () => {
+  popupFormEditProfile.reset();
   nameInput.value = profileName.textContent;
   jobInput.value = profileDescription.textContent;
   openPopup(popupEditProfile);
 }
 
 buttonEdit.addEventListener('click', () => fillProfileInputs(popupEditProfile));
-buttonAdd.addEventListener('click', () => openPopup(popupAddCard));
+buttonAdd.addEventListener('click', () => {
+  addCardValidation._resetAllInputs(popupAddCard);
+  openPopup(popupAddCard);
+});
+
+
 
 popups.forEach((popup) => {
   popup.addEventListener('click', (evt) => {
@@ -100,4 +107,5 @@ popups.forEach((popup) => {
 // сабмиты
 popupFormEditProfile.addEventListener('submit', handleFormEditProfile);
 popupFormAddCard.addEventListener('submit', handleFormAddSubmit);
+
 
