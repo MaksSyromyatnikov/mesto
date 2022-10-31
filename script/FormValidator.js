@@ -14,14 +14,12 @@ export class FormValidator {
     errorElement.textContent = errorMessage;
 
     errorElement.classList.add(this._obj.errorClass);
-    console.log(this._buttonSubmitForm);
   };
 
   _hideInputError = (inputElement) => {
     const errorElement = document.getElementById(`${inputElement.id}-error`);
     inputElement.classList.remove(this._obj.inputErrorClass);
     errorElement.textContent = '';
-    console.log(this._buttonSubmitForm);
   };
 
   // проверка валидности инпутов
