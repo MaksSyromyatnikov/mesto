@@ -88,7 +88,10 @@ const fillProfileInputs = () => {
   openPopup(popupEditProfile);
 }
 
-buttonEdit.addEventListener('click', () => fillProfileInputs(popupEditProfile));
+buttonEdit.addEventListener('click', () => {
+  profileEditValidation.enableSubmitButton();
+  fillProfileInputs(popupEditProfile);
+});
 buttonAdd.addEventListener('click', () => {
   addCardValidation._resetAllInputs(popupAddCard);
   openPopup(popupAddCard);
