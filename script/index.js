@@ -67,6 +67,9 @@ const handleFormAddSubmit = (evt) => {
 
   const card = new Card(cardData, '.elements__image', '#card-template');
   renderCard(card.generateCard(), cardsContainer);
+  placeNameInput.value = '';
+  srcImageInput.value = '';
+  addCardValidation.disableSubmitButton();
   closePopup(popupAddCard);
 }
 
