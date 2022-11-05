@@ -10,7 +10,7 @@ class Card {
     this._templateSelector = templateSelector;
   }
 
-  _getTemplate() {
+  _getTemplate = () => {
     const cardElement = document
     .querySelector(this._templateSelector)
     .content
@@ -20,7 +20,7 @@ class Card {
     return cardElement;
   }
 
-  generateCard () {
+  generateCard = () => {
     this._element = this._getTemplate();
     this._setEventListeners();
 
@@ -34,20 +34,20 @@ class Card {
     return this._element;
   }
 
-  _buttonLikeCard () {
+  _buttonLikeCard = () => {
     this._element.querySelector('.elements__button-like')
     .classList.toggle('elements__button-like_state-active');
   }
 
-  _buttonTrashCard () {
+  _buttonTrashCard = () => {
     this._element.remove();
   }
 
-  _handleOpenImage() {
+  _handleOpenImage = () => {
     openImagePopup (this._cardData.name, this._cardData.link);
   }
 
-  _setEventListeners() {
+  _setEventListeners = () => {
 
     this._element.querySelector('.elements__trash').addEventListener('click', () => {
       this._buttonTrashCard();
