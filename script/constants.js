@@ -25,3 +25,13 @@ export const initialCards = [
     link: 'https://images.unsplash.com/photo-1612520557101-48a83a15d1e9?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80'
   }
 ];
+
+//объявление модального окна с картинкой
+export const popupImage = document.querySelector('.popup_type_image');
+export const popupImageFull = popupImage.querySelector('.popup__image');
+export const popupImageSubtitle = popupImage.querySelector('.popup__subtitle');
+
+//Объявление Данных из профиля
+export const profile = document.querySelector('.profile');
+export const profileName = profile.querySelector(".profile__name");
+export const profileDescription = profile.querySelector(".profile__description");

@@ -1,12 +1,10 @@
 "use strict"
 
-export {Card};
-import {openImagePopup} from './utils.js';
+import {Section} from "./Section.js";
 
-class Card {
-  constructor(cardData, imageSelector, templateSelector){
+export default class Card {
+  constructor(cardData, templateSelector){
     this._cardData = cardData;
-    this._imageSelector = imageSelector;
     this._templateSelector = templateSelector;
   }
 
@@ -26,8 +24,8 @@ class Card {
 
     const image = this._element.querySelector(this._imageSelector);
 
-    image.src = this._cardData.link;
-    image.alt = this._cardData.name;
+    this._element.querySelector('.elements__image') = this._cardData.link;
+    this._element.querySelector('.elements__image') = this._cardData.name;
 
     this._element.querySelector('.elements__title').textContent = this._cardData.name;
 
@@ -55,9 +53,9 @@ class Card {
     this._element.querySelector('.elements__button-like').addEventListener('click', () => {
       this._buttonLikeCard();
     });
-    this._element.querySelector('.elements__image').addEventListener('click', () => {
-      this._handleOpenImage(this._cardData.name, this._cardData.link);
-    })
+    // this._element.querySelector('.elements__image').addEventListener('click', () => {
+    //   this._handleOpenImage(this._cardData.name, this._cardData.link);
+    // })
   }
 }
 
