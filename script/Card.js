@@ -3,8 +3,9 @@
 import {Section} from "./Section.js";
 
 export default class Card {
-  constructor(cardData, templateSelector){
+  constructor(cardData, imageSelector, templateSelector){
     this._cardData = cardData;
+    this._imageSelector = imageSelector;
     this._templateSelector = templateSelector;
   }
 
@@ -24,8 +25,8 @@ export default class Card {
 
     const image = this._element.querySelector(this._imageSelector);
 
-    this._element.querySelector('.elements__image') = this._cardData.link;
-    this._element.querySelector('.elements__image') = this._cardData.name;
+    this.imageSelector = this._cardData.link;
+    this.imageSelector = this._cardData.name;
 
     this._element.querySelector('.elements__title').textContent = this._cardData.name;
 

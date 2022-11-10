@@ -43,16 +43,20 @@ const popups = Array.from(document.querySelectorAll('.popup'));
 //   errorClass: 'popup__error'
 // }
 
-const sectionList = new Section({
+const section = new Section({
   items: initialCards,
   renderer: (item) =>  {
-    const card = new Card (item, '#card-template');
-    const cardGenerated = card.generateCard();
-    sectionList.addItem(cardGenerated);
+    const card = createCard(item);
+    section.addItem(card);
   }
 }, cardsContainer);
 
-sectionList.renderItems();
+const createCard = (cardData) => {
+  const cardElement = new Card (cardData, '.elements__image', '#card-template');
+  return cardElement.generateCard();
+}
+
+section.renderItems();
 
 // // 2 формы валидации из класса
 // const addCardValidation = new FormValidator(configValidation, popupAddCard);
