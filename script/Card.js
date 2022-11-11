@@ -25,8 +25,8 @@ export default class Card {
 
     const image = this._element.querySelector(this._imageSelector);
 
-    this.imageSelector = this._cardData.link;
-    this.imageSelector = this._cardData.name;
+    image.src = this._cardData.link;
+    image.name = this._cardData.name;
 
     this._element.querySelector('.elements__title').textContent = this._cardData.name;
 

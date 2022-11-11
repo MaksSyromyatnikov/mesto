@@ -37,7 +37,7 @@ export class FormValidator {
     })
   }
 
-  _resetAllInputs = () => {
+  resetAllInputs = () => {
     //все инпуты
     const allInputs = Array.from(this._formElementType.querySelectorAll('.popup__input'));
 
@@ -83,9 +83,6 @@ export class FormValidator {
 
 
   enableValidation = () => {
-    this._formElementType.addEventListener('submit', (evt) => {
-      evt.preventDefault();
-    });
     this._setEventListeners();
   };
 

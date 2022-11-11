@@ -5,11 +5,12 @@ import Popup from "./Popup.js";
 import { PopupWithImage } from "./PopupWithImage.js";
 import { PopupWithForm } from "./PopupWithForm.js";
 import Userinfo from "./UserInfo.js";
-import { initialCards } from "./constants.js";
-//import { FormValidator } from "./FormValidator.js";
+import {
+  initialCards,
+  cardsContainer } from "./constants.js";
+import { FormValidator } from "./FormValidator.js";
 
-//контейнер
-const cardsContainer = document.querySelector('.elements');
+
 //Объявление add popup
 const popupAddCard = document.querySelector('.popup_type_add');
 const popupFormAddCard = popupAddCard.querySelector('.popup__form');
@@ -33,16 +34,24 @@ const jobInput = document.querySelector(".popup__input_type_job");
 const popups = Array.from(document.querySelectorAll('.popup'));
 
 
-// // объект с селекторами и классами
-// const configValidation = {
-//   formSelector: '.popup__form',
-//   inputSelector: '.popup__input',
-//   submitButtonSelector: '.popup__save-button',
-//   disableButtonClass: 'popup__save-button_disabled',
-//   inputErrorClass: 'popup__input_type_error',
-//   errorClass: 'popup__error'
-// }
+// объект с селекторами и классами
+const configValidation = {
+  formSelector: '.popup__form',
+  inputSelector: '.popup__input',
+  submitButtonSelector: '.popup__save-button',
+  disableButtonClass: 'popup__save-button_disabled',
+  inputErrorClass: 'popup__input_type_error',
+  errorClass: 'popup__error'
+}
 
+// 2 формы валидации из класса
+const addCardValidation = new FormValidator(configValidation, popupAddCard);
+const profileEditValidation = new FormValidator(configValidation, popupEditProfile);
+
+addCardValidation.enableValidation();
+profileEditValidation.enableValidation();
+
+// экземпляр Section в контейнер
 const section = new Section({
   items: initialCards,
   renderer: (item) =>  {
@@ -56,28 +65,45 @@ const createCard = (cardData) => {
   return cardElement.generateCard();
 }
 
-section.renderItems();
+// изначальный userInfo
 
-// // 2 формы валидации из класса
-// const addCardValidation = new FormValidator(configValidation, popupAddCard);
-// const profileEditValidation = new FormValidator(configValidation, popupEditProfile);
+const userInfo = new Userinfo({
+  profileName: profileName,
+  profileDescription: profileDescription
+});
 
-// addCardValidation.enableValidation();
-// profileEditValidation.enableValidation();
+// Создаём попапы
+const popupEdit = new PopupWithForm('.popup_type_edit', (inputValues) => {
+  userInfo.setUserInfo(inputValues);
+  popupEdit.close();
+})
+popupEdit.setEventListeners();
 
+const popupAdd = new PopupWithForm('.popup_type_add', (inputValues) => {
+  const card = createCard(inputValues);
+  section.addItem(card);
+  addCardValidation.disableSubmitButton();
+});
+popupAdd.setEventListeners();
+
+const popupPicture = new PopupWithImage('.popup_type_image');
+popupPicture.setEventListeners();
+
+
+// добавление слушателей
+buttonEdit.addEventListener("click", () => {
+  userInfo.setUserInfo(userInfo.getUserInfo());
+  popupEdit.open();
+  profileEditValidation.resetAllInputs();
+});
+
+buttonAdd.addEventListener("click", () => {
+  addCardValidation.resetAllInputs();
+  popupAdd.open();
+});
 
 ////////////////////////////////////////////////////
 
-
-
-// const renderCard = (card, container) => {
-//   container.prepend(card);
-// }
-
-// initialCards.reverse().forEach((cardData) => {
-//   const card = new Card (cardData,'.elements__image', '#card-template');
-//   renderCard(card.generateCard(), cardsContainer);
-// })
 
 
 // //Добавление карточки
@@ -142,3 +168,6 @@ section.renderItems();
 // // сабмиты
 // popupFormEditProfile.addEventListener('submit', handleFormEditProfile);
 // popupFormAddCard.addEventListener('submit', handleFormAddSubmit);
+
+//начальный сет карточек
+section.renderItems();

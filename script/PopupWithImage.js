@@ -9,14 +9,15 @@ import {
 
 
 export class PopupWithImage extends Popup {
-  constructor(){
+  constructor(popupSelector){
     super(popupSelector);
+    this._popupImage = this._popup.querySelector('.popup_type_image');
   }
 
-  open (modal, photoName, photoLink) {
-    modal.classList.add("popup_opened");
+  open (photoName, photoLink) {
     popupImageSubtitle.textContent = photoName;
     popupImageFull.src = photoLink;
     popupImageFull.alt = photoName;
+    super.open();
   }
 }

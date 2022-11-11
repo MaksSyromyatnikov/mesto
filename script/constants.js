@@ -26,6 +26,9 @@ export const initialCards = [
   }
 ];
 
+//контейнер
+export const cardsContainer = document.querySelector('.elements');
+
 //объявление модального окна с картинкой
 export const popupImage = document.querySelector('.popup_type_image');
 export const popupImageFull = popupImage.querySelector('.popup__image');
