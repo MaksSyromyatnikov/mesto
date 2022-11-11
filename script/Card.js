@@ -1,15 +1,16 @@
 "use strict"
 
 import {Section} from "./Section.js";
+import Popup from "./Popup.js";
 
 export default class Card {
-  constructor(cardData, imageSelector, templateSelector){
+  constructor(cardData, templateSelector, handleCardClick){
     this._cardData = cardData;
-    this._imageSelector = imageSelector;
     this._templateSelector = templateSelector;
+    this._handleCardClick = handleCardClick;
   }
 
-  _getTemplate = () => {
+  _getTemplate() {
     const cardElement = document
     .querySelector(this._templateSelector)
     .content
@@ -19,11 +20,11 @@ export default class Card {
     return cardElement;
   }
 
-  generateCard = () => {
+  generateCard () {
     this._element = this._getTemplate();
     this._setEventListeners();
 
-    const image = this._element.querySelector(this._imageSelector);
+    const image = this._element.querySelector('.elements__image');
 
     image.src = this._cardData.link;
     image.name = this._cardData.name;
@@ -33,20 +34,23 @@ export default class Card {
     return this._element;
   }
 
-  _buttonLikeCard = () => {
+  _buttonLikeCard () {
     this._element.querySelector('.elements__button-like')
     .classList.toggle('elements__button-like_state-active');
   }
 
-  _buttonTrashCard = () => {
+  _buttonTrashCard () {
     this._element.remove();
   }
 
-  _handleOpenImage = () => {
-    openImagePopup (this._cardData.name, this._cardData.link);
+  _openImagePopup () {
+    this._handleCardClick({
+      link: this._cardData.link,
+      name: this._cardData.name
+    })
   }
 
-  _setEventListeners = () => {
+  _setEventListeners () {
 
     this._element.querySelector('.elements__trash').addEventListener('click', () => {
       this._buttonTrashCard();
@@ -54,9 +58,9 @@ export default class Card {
     this._element.querySelector('.elements__button-like').addEventListener('click', () => {
       this._buttonLikeCard();
     });
-    // this._element.querySelector('.elements__image').addEventListener('click', () => {
-    //   this._handleOpenImage(this._cardData.name, this._cardData.link);
-    // })
+    this._element.querySelector('.elements__image').addEventListener('click', () => {
+      this._openImagePopup();
+    })
   }
 }
 

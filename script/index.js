@@ -1,37 +1,30 @@
 'use strict'
 import {Section} from "./Section.js";
 import Card from "./Card.js";
-import Popup from "./Popup.js";
 import { PopupWithImage } from "./PopupWithImage.js";
 import { PopupWithForm } from "./PopupWithForm.js";
 import Userinfo from "./UserInfo.js";
 import {
   initialCards,
-  cardsContainer } from "./constants.js";
+  cardsContainer,
+  popupImage } from "./constants.js";
 import { FormValidator } from "./FormValidator.js";
 
 
 //Объявление add popup
 const popupAddCard = document.querySelector('.popup_type_add');
-const popupFormAddCard = popupAddCard.querySelector('.popup__form');
-const placeNameInput = popupAddCard.querySelector('.popup__input_type_place');
-const srcImageInput = popupAddCard.querySelector('.popup__input_type_src');
+
 const buttonAdd = document.querySelector('.profile__add-button');
 
 //Объявление Edit popup
 const popupEditProfile = document.querySelector(".popup_type_edit");
-const popupFormEditProfile = popupEditProfile.querySelector('.popup__form');
+
 const buttonEdit = document.querySelector(".profile__edit-button");
 
 //Объявление Данных из профиля
 const profile = document.querySelector('.profile');
 const profileName = profile.querySelector(".profile__name");
 const profileDescription = profile.querySelector(".profile__description");
-
-const nameInput = document.querySelector(".popup__input_type_name");
-const jobInput = document.querySelector(".popup__input_type_job");
-
-const popups = Array.from(document.querySelectorAll('.popup'));
 
 
 // объект с селекторами и классами
@@ -61,7 +54,9 @@ const section = new Section({
 }, cardsContainer);
 
 const createCard = (cardData) => {
-  const cardElement = new Card (cardData, '.elements__image', '#card-template');
+  const cardElement = new Card (cardData, '#card-template', (image) => {
+    popupPicture.open(image);
+  });
   return cardElement.generateCard();
 }
 

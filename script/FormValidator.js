@@ -1,10 +1,10 @@
 'use strict'
 export class FormValidator {
-  constructor (obj, formElementType){
+  constructor (obj, form){
     this._obj = obj;
-    this._formElementType = formElementType;
-    this._inputList = Array.from(this._formElementType.querySelectorAll(this._obj.inputSelector));
-    this._buttonSubmitForm = this._formElementType.querySelector(this._obj.submitButtonSelector);
+    this._form = form;
+    this._inputList = Array.from(this._form.querySelectorAll(this._obj.inputSelector));
+    this._buttonSubmitForm = this._form.querySelector(this._obj.submitButtonSelector);
   }
     // показ и скрытие ошибки
   _showInputError = (inputElement, errorMessage) => {
@@ -39,7 +39,7 @@ export class FormValidator {
 
   resetAllInputs = () => {
     //все инпуты
-    const allInputs = Array.from(this._formElementType.querySelectorAll('.popup__input'));
+    const allInputs = Array.from(this._form.querySelectorAll('.popup__input'));
 
     //Очищаем от ошибок
     allInputs.forEach((inputElement) => {
