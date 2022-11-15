@@ -1,26 +1,22 @@
 "use strict"
 
-import {
-  profile,
-  profileName,
-  profileDescription
-} from './constants.js';
 
 export default class Userinfo {
-  constructor({profileName, profileDescription}){
-    this._profileName = profileName;
-    this._profileDescription = profileDescription;
+  constructor(profileSelectors){
+    this._profileName = document.querySelector(profileSelectors.name);
+    this._profileDescription = document.querySelector(profileSelectors.description);
   }
   // получаем данные со страницы
   getUserInfo () {
-    return {
-      name: this._profileName.textContent,
-      description: this._profileDescription.textContent
-    };
+    const userData = {};
+    userData.name = this._profileName.textContent;
+    userData.description = this._profileDescription.textContent;
+    return userData;
   }
+
   //отдаем данные на страницу
-  setUserInfo ({name, description}) {
-    this._profileName.textContent = name;
-    this._profileDescription.textContent = description;
+  setUserInfo (userData) {
+    this._profileName.textContent = userData['profile-name'];
+    this._profileDescription.textContent = userData['profile-job'];
   }
 }

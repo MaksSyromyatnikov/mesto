@@ -1,36 +1,31 @@
 "use strict"
 import Popup from "./Popup.js";
 
-import {
-  popupImage,
-  popupImageFull,
-  popupImageSubtitle
-} from "./constants.js";
-
 
 export class PopupWithForm extends Popup {
   constructor(popupSelector, handleSubmitForm){
     super(popupSelector);
-    this._submitForm = handleSubmitForm;
+    this._handleSubmitForm = handleSubmitForm;
     this._form = this._popup.querySelector('.popup__form');
     this._inputs = Array.from(this._form.querySelectorAll('.popup__input'));
   }
 
-  // получаем данные инпутов из формы
-  _getInputValues(){
-    this.inputValues = {};
-      this._inputs.forEach((el) => {
-        console.log(this._inputs);
-        this._inputValues[el.name] = el.value;
-        console.log(this.inputValues);
-      });
-      return this._inputValues;
+
+  setInputValues(userInfo) {
+    this._inputs.forEach((input) => {
+      input.values = userInfo[input.name];
+    });
   }
 
-  setInputValues(data) {
-    this._inputs.forEach((el) => {
-      el.value = data[el.name];
-    });
+  // получаем данные инпутов из формы
+  _getInputValues(){
+    const inputValues = {};
+      this._inputs.forEach((input) => {
+        inputValues[input.name] = input.value;
+      });
+      // console.log(inputValues);
+      return inputValues;
+
   }
 
   resetForm(){
@@ -42,7 +37,7 @@ export class PopupWithForm extends Popup {
     super.setEventListeners();
     this._form.addEventListener('submit', (e) => {
       e.preventDefault();
-      this._submitForm(this._getInputValues());
+      this._handleSubmitForm(this._getInputValues());
     });
   }
 

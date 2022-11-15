@@ -29,12 +29,13 @@ export const initialCards = [
 //контейнер
 export const cardsContainer = document.querySelector('.elements');
 
-//объявление модального окна с картинкой
-export const popupImage = document.querySelector('.popup_type_image');
-export const popupImageFull = popupImage.querySelector('.popup__image');
-export const popupImageSubtitle = popupImage.querySelector('.popup__subtitle');
+//Объявление add popup
+export const popupAddCard = document.querySelector('.popup_type_add');
 
-//Объявление Данных из профиля
-export const profile = document.querySelector('.profile');
-export const profileName = profile.querySelector(".profile__name");
-export const profileDescription = profile.querySelector(".profile__description");
+export const buttonAdd = document.querySelector('.profile__add-button');
+
+//Объявление Edit popup
+export const popupEditProfile = document.querySelector(".popup_type_edit");
+
+export const buttonEdit = document.querySelector(".profile__edit-button");
+

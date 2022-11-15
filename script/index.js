@@ -7,24 +7,12 @@ import Userinfo from "./UserInfo.js";
 import {
   initialCards,
   cardsContainer,
-  popupImage } from "./constants.js";
+  popupAddCard,
+  buttonAdd,
+  popupEditProfile,
+  buttonEdit
+   } from "./constants.js";
 import { FormValidator } from "./FormValidator.js";
-
-
-//Объявление add popup
-const popupAddCard = document.querySelector('.popup_type_add');
-
-const buttonAdd = document.querySelector('.profile__add-button');
-
-//Объявление Edit popup
-const popupEditProfile = document.querySelector(".popup_type_edit");
-
-const buttonEdit = document.querySelector(".profile__edit-button");
-
-//Объявление Данных из профиля
-const profile = document.querySelector('.profile');
-const profileName = profile.querySelector(".profile__name");
-const profileDescription = profile.querySelector(".profile__description");
 
 
 // объект с селекторами и классами
@@ -46,7 +34,7 @@ profileEditValidation.enableValidation();
 
 // экземпляр Section в контейнер
 const section = new Section({
-  items: initialCards,
+  items: initialCards.reverse(),
   renderer: (item) =>  {
     const card = createCard(item);
     section.addItem(card);
@@ -63,8 +51,8 @@ const createCard = (cardData) => {
 // изначальный userInfo
 
 const userInfo = new Userinfo({
-  profileName: profileName,
-  profileDescription: profileDescription
+  name: '.profile__name',
+  description: '.profile__description'
 });
 
 // Создаём попапы
@@ -78,6 +66,7 @@ const popupAdd = new PopupWithForm('.popup_type_add', (inputValues) => {
   const card = createCard(inputValues);
   section.addItem(card);
   addCardValidation.disableSubmitButton();
+  popupAdd.close();
 });
 popupAdd.setEventListeners();
 
@@ -87,9 +76,8 @@ popupPicture.setEventListeners();
 
 // добавление слушателей
 buttonEdit.addEventListener("click", () => {
-  userInfo.setUserInfo(userInfo.getUserInfo());
+  popupEdit.setInputValues(userInfo.getUserInfo());
   popupEdit.open();
-  profileEditValidation.resetAllInputs();
 });
 
 buttonAdd.addEventListener("click", () => {
@@ -97,72 +85,6 @@ buttonAdd.addEventListener("click", () => {
   popupAdd.open();
 });
 
-////////////////////////////////////////////////////
-
-
-
-// //Добавление карточки
-// const handleFormAddSubmit = (evt) => {
-//   evt.preventDefault();
-//   const cardData = {
-//       name: placeNameInput.value,
-//       link: srcImageInput.value
-//   }
-
-//   const card = new Card(cardData, '.elements__image', '#card-template');
-//   renderCard(card.generateCard(), cardsContainer);
-//   placeNameInput.value = '';
-//   srcImageInput.value = '';
-//   addCardValidation.disableSubmitButton();
-//   closePopup(popupAddCard);
-// }
-
-
-
-/////////////////////////////////////////////////////
-
-
-
-// // Изменение профиля
-// const handleFormEditProfile = (evt) => {
-//   evt.preventDefault();
-
-//   profileName.textContent = nameInput.value;
-//   profileDescription.textContent = jobInput.value;
-//   closePopup(popupEditProfile);
-// }
-
-
-// //переносим в попап данные профиля
-// const fillProfileInputs = () => {
-//   popupFormEditProfile.reset();
-//   nameInput.value = profileName.textContent;
-//   jobInput.value = profileDescription.textContent;
-//   openPopup(popupEditProfile);
-// }
-
-// buttonEdit.addEventListener('click', () => {
-//   profileEditValidation.enableSubmitButton();
-//   fillProfileInputs(popupEditProfile);
-// });
-// buttonAdd.addEventListener('click', () => {
-//   addCardValidation._resetAllInputs(popupAddCard);
-//   openPopup(popupAddCard);
-// });
-
-
-
-// popups.forEach((popup) => {
-//   popup.addEventListener('click', (evt) => {
-//     if (evt.target.classList.contains('popup__close-button')) {
-//       closePopup(popup);
-//     }
-//   })
-// });
-
-// // сабмиты
-// popupFormEditProfile.addEventListener('submit', handleFormEditProfile);
-// popupFormAddCard.addEventListener('submit', handleFormAddSubmit);
 
 //начальный сет карточек
 section.renderItems();

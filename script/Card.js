@@ -1,8 +1,5 @@
 "use strict"
 
-import {Section} from "./Section.js";
-import Popup from "./Popup.js";
-
 export default class Card {
   constructor(cardData, templateSelector, handleCardClick){
     this._cardData = cardData;
