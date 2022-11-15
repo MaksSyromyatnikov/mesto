@@ -63,9 +63,14 @@ const popupEdit = new PopupWithForm('.popup_type_edit', (inputValues) => {
 popupEdit.setEventListeners();
 
 const popupAdd = new PopupWithForm('.popup_type_add', (inputValues) => {
-  const card = createCard(inputValues);
+  const cardData = {
+    name: inputValues['element-place'],
+    link: inputValues['element-src']
+  }
+  const card = createCard(cardData);
   section.addItem(card);
   addCardValidation.disableSubmitButton();
+  popupAdd.resetForm();
   popupAdd.close();
 });
 popupAdd.setEventListeners();

@@ -2,13 +2,15 @@
 
 
 export default class Userinfo {
-  constructor(profileSelectors){
-    this._profileName = document.querySelector(profileSelectors.name);
-    this._profileDescription = document.querySelector(profileSelectors.description);
+  constructor(profileSelector){
+    this._profileName = document.querySelector(profileSelector.name);
+    this._profileDescription = document.querySelector(profileSelector.description);
   }
   // получаем данные со страницы
   getUserInfo () {
     const userData = {};
+    console.log(this._profileName.textContent);
+    console.log(this._profileDescription.textContent);
     userData.name = this._profileName.textContent;
     userData.description = this._profileDescription.textContent;
     return userData;
