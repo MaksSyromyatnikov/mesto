@@ -81,8 +81,8 @@ popupPicture.setEventListeners();
 
 // добавление слушателей
 buttonEdit.addEventListener("click", () => {
-  popupEdit.setInputValues(userInfo.getUserInfo());
   popupEdit.open();
+  userInfo.getUserInfo();
 });
 
 buttonAdd.addEventListener("click", () => {

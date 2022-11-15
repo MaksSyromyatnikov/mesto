@@ -9,8 +9,6 @@ export default class Userinfo {
   // получаем данные со страницы
   getUserInfo () {
     const userData = {};
-    console.log(this._profileName.textContent);
-    console.log(this._profileDescription.textContent);
     userData.name = this._profileName.textContent;
     userData.description = this._profileDescription.textContent;
     return userData;
