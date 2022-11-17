@@ -1,9 +1,9 @@
 'use strict'
-import {Section} from "./Section.js";
-import Card from "./Card.js";
-import { PopupWithImage } from "./PopupWithImage.js";
-import { PopupWithForm } from "./PopupWithForm.js";
-import Userinfo from "./UserInfo.js";
+import {Section} from "../components/Section.js";
+import Card from "../components/Card.js";
+import { PopupWithImage } from "../components/PopupWithImage.js";
+import { PopupWithForm } from "../components/PopupWithForm.js";
+import Userinfo from "../components/UserInfo.js";
 import {
   initialCards,
   cardsContainer,
@@ -11,8 +11,8 @@ import {
   buttonAdd,
   popupEditProfile,
   buttonEdit
-   } from "./constants.js";
-import { FormValidator } from "./FormValidator.js";
+   } from "../utils/constants.js";
+import { FormValidator } from "../components/FormValidator.js";
 
 
 // объект с селекторами и классами
@@ -86,6 +86,8 @@ buttonEdit.addEventListener("click", () => {
 });
 
 buttonAdd.addEventListener("click", () => {
+  popupAdd.resetForm();
+  addCardValidation.disableSubmitButton();
   addCardValidation.resetAllInputs();
   popupAdd.open();
 });
