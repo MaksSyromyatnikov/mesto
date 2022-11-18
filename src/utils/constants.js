@@ -1,29 +1,36 @@
 // объявление массива карточек
+const tokyo = new URL("../images/elements/elements__tokyo.jpg", import.meta.url);
+const tbilisi = new URL('../images/elements/elements__tbilisi.jpg', import.meta.url);
+const london = new URL('../images/elements/elements__london.jpg', import.meta.url);
+const erevan = new URL('../images/elements/elements__erevan.jpg', import.meta.url);
+const newYork = new URL('../images/elements/elements__newYork.jpg', import.meta.url);
+const bordo = new URL('../images/elements/elements__bordo.jpg', import.meta.url);
+
 export const initialCards = [
   {
     name: 'Токио',
-    link: 'https://images.unsplash.com/photo-1601042879364-f3947d3f9c16?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=387&q=80'
+    link: tokyo,
   },
   {
     name: 'Тбилиси',
-    link: 'https://images.unsplash.com/photo-1594766508832-b111829239cd?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=473&q=80'
+    link: tbilisi,
   },
   {
     name: 'Лондон',
-    link: 'https://images.unsplash.com/photo-1536890992765-f42a1ee1e2a8?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=327&q=80'
+    link: london,
   },
   {
     name: 'Ереван',
-    link: 'https://images.unsplash.com/photo-1575365717666-1a84be3fd104?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80'
+    link: erevan,
   },
   {
     name: 'Нью-Йорк',
-    link: 'https://images.unsplash.com/photo-1573767291321-c0af2eaf5266?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=536&q=80'
+    link: newYork,
   },
   {
     name: 'Бордо',
-    link: 'https://images.unsplash.com/photo-1612520557101-48a83a15d1e9?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80'
-  }
+    link: bordo,
+  },
 ];
 
 //контейнер

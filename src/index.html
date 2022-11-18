@@ -5,7 +5,6 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0 minimum-scale=1.0 maximum-scale=1.0">
-  <link rel='stylesheet' href='./pages/index.css'>
 
   <title>Mesto</title>
 </head>
@@ -13,12 +12,12 @@
 <body class="root">
   <div class="container">
     <header class="header">
-      <img class="header__logo" src="./images/header/logo.svg" alt="Логотип Мест России">
+      <img class="header__logo" src="<%=require('./images/header/logo.svg')%>" alt="Логотип Мест России">
     </header>
     <main class="content">
       <!-- profile -->
       <section class="profile">
-        <img class="profile__avatar" src="./images/profile/avatar.jpg" alt="Аватар">
+        <img class="profile__avatar" src="<%=require('./images/profile/avatar.jpg')%>" alt="Аватар">
         <div class="profile__info">
           <h1 class="profile__name">Жак-Ив Кусто</h1>
           <p class="profile__description">Исследователь океана</p>
@@ -84,7 +83,7 @@
       </div>
     </article>
   </template>
-  <script type='module' src="./pages/index.js"></script>
+
 </body>
 
 </html>

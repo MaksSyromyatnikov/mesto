@@ -1,4 +1,5 @@
 'use strict'
+import './index.css';
 import {Section} from "../components/Section.js";
 import Card from "../components/Card.js";
 import { PopupWithImage } from "../components/PopupWithImage.js";
@@ -13,7 +14,6 @@ import {
   buttonEdit
    } from "../utils/constants.js";
 import { FormValidator } from "../components/FormValidator.js";
-
 
 // объект с селекторами и классами
 const configValidation = {
