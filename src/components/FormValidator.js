@@ -37,18 +37,6 @@ export class FormValidator {
     })
   }
 
-  resetAllInputs = () => {
-    //все инпуты
-    const allInputs = Array.from(this._form.querySelectorAll('.popup__input'));
-
-    //Очищаем от ошибок
-    allInputs.forEach((inputElement) => {
-    const errorElement = document.getElementById(`${inputElement.id}-error`);
-    inputElement.classList.remove('popup__input_type_error');
-    errorElement.textContent = '';
-  });
-  }
-
   disableSubmitButton = () => {
     this._buttonSubmitForm.classList.add(this._obj.disableButtonClass);
     this._buttonSubmitForm.setAttribute('disabled', true);
@@ -66,6 +54,14 @@ export class FormValidator {
     } else {
       this.enableSubmitButton();
     }
+  }
+
+  resetValidation = () => {
+    this.toggleButtonState();
+
+    this._inputList.forEach((inputElement) => {
+      this._hideInputError(inputElement);
+    });
   }
 
     // слушатели инпутов + изначальный state кнопок
