@@ -18,7 +18,16 @@ export class PopupWithForm extends Popup {
         inputValues[input.name] = input.value;
       });
       return inputValues;
+  }
 
+  setInputValues(data){
+    console.log(this._inputs);
+    this._inputs.forEach((input) => {
+      console.log(input.name);
+      console.log(data[input.name]);
+      input.value = data[input.name];
+    })
+    return this._inputs;
   }
 
   resetForm(){

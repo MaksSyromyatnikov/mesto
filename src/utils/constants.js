@@ -6,6 +6,16 @@ const erevan = new URL('../images/elements/elements__erevan.jpg', import.meta.ur
 const newYork = new URL('../images/elements/elements__newYork.jpg', import.meta.url);
 const bordo = new URL('../images/elements/elements__bordo.jpg', import.meta.url);
 
+// объект с селекторами и классами
+export const configValidation = {
+  formSelector: '.popup__form',
+  inputSelector: '.popup__input',
+  submitButtonSelector: '.popup__save-button',
+  disableButtonClass: 'popup__save-button_disabled',
+  inputErrorClass: 'popup__input_type_error',
+  errorClass: 'popup__error'
+}
+
 export const initialCards = [
   {
     name: 'Токио',
@@ -32,9 +42,6 @@ export const initialCards = [
     link: bordo,
   },
 ];
-
-//контейнер
-export const cardsContainer = document.querySelector('.elements');
 
 //Объявление add popup
 export const popupAddCard = document.querySelector('.popup_type_add');

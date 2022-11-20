@@ -7,23 +7,13 @@ import { PopupWithForm } from "../components/PopupWithForm.js";
 import Userinfo from "../components/UserInfo.js";
 import {
   initialCards,
-  cardsContainer,
   popupAddCard,
   buttonAdd,
   popupEditProfile,
-  buttonEdit
+  buttonEdit,
+  configValidation
    } from "../utils/constants.js";
 import { FormValidator } from "../components/FormValidator.js";
-
-// объект с селекторами и классами
-const configValidation = {
-  formSelector: '.popup__form',
-  inputSelector: '.popup__input',
-  submitButtonSelector: '.popup__save-button',
-  disableButtonClass: 'popup__save-button_disabled',
-  inputErrorClass: 'popup__input_type_error',
-  errorClass: 'popup__error'
-}
 
 // 2 формы валидации из класса
 const addCardValidation = new FormValidator(configValidation, popupAddCard);
@@ -39,7 +29,7 @@ const section = new Section({
     const card = createCard(item);
     section.addItem(card);
   }
-}, cardsContainer);
+});
 
 const createCard = (cardData) => {
   const cardElement = new Card (cardData, '#card-template', (image) => {
@@ -81,14 +71,14 @@ popupPicture.setEventListeners();
 
 // добавление слушателей
 buttonEdit.addEventListener("click", () => {
+  popupEdit.setInputValues(userInfo.getUserInfo());
+  profileEditValidation.resetValidation();
   popupEdit.open();
-  userInfo.getUserInfo();
 });
 
 buttonAdd.addEventListener("click", () => {
   popupAdd.resetForm();
-  addCardValidation.disableSubmitButton();
-  addCardValidation.resetAllInputs();
+  addCardValidation.resetValidation();
   popupAdd.open();
 });
 
