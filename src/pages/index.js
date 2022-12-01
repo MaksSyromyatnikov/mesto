@@ -7,10 +7,13 @@ import { PopupWithForm } from "../components/PopupWithForm.js";
 import Userinfo from "../components/UserInfo.js";
 import {
   initialCards,
+  containerCards,
   popupAddCard,
   buttonAdd,
   popupEditProfile,
   buttonEdit,
+  inputDescription,
+  inputName,
   configValidation
    } from "../utils/constants.js";
 import { FormValidator } from "../components/FormValidator.js";
@@ -29,7 +32,7 @@ const section = new Section({
     const card = createCard(item);
     section.addItem(card);
   }
-});
+}, containerCards);
 
 const createCard = (cardData) => {
   const cardElement = new Card (cardData, '#card-template', (image) => {
@@ -71,7 +74,9 @@ popupPicture.setEventListeners();
 
 // добавление слушателей
 buttonEdit.addEventListener("click", () => {
-  popupEdit.setInputValues(userInfo.getUserInfo());
+  const currentUser = userInfo.getUserInfo();
+  inputName.value = currentUser.name;
+  inputDescription.value = currentUser.description;
   profileEditValidation.resetValidation();
   popupEdit.open();
 });
