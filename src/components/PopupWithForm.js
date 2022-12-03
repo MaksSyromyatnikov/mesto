@@ -20,12 +20,13 @@ export class PopupWithForm extends Popup {
       return inputValues;
   }
 
-  setInputValues = (evt) => {
-    evt.preventDefault();
-    this._handleSubmitForm(this._getInputValues());
+  setInputValues(data) {
+    this._inputList.forEach((input) => {
+      input.value = data[input.name];
+    });
   }
 
-  resetForm(){
+  close(){
     this._form.reset();
     super.close();
   }
