@@ -1,4 +1,5 @@
 'use strict'
+import Api from '../components/Api.js';
 import './index.css';
 import {Section} from "../components/Section.js";
 import Card from "../components/Card.js";
@@ -6,7 +7,6 @@ import { PopupWithImage } from "../components/PopupWithImage.js";
 import { PopupWithForm } from "../components/PopupWithForm.js";
 import Userinfo from "../components/UserInfo.js";
 import {
-  initialCards,
   containerCards,
   popupAddCard,
   buttonAdd,
@@ -25,14 +25,33 @@ const profileEditValidation = new FormValidator(configValidation, popupEditProfi
 addCardValidation.enableValidation();
 profileEditValidation.enableValidation();
 
+
+// конфиг с токеном
+const configApi = {
+  url: 'https://mesto.nomoreparties.co/v1/cohort-58',
+  headers: {
+    authorization: 'ae8699d5-da9b-4ba8-9006-ccade90b95f9',
+    'Content-Type': 'application/json'
+  }
+}
+
+const api = new Api(configApi);
+
+// инициализация начальных данных
+Promise.all([api.getInitialCards(), api.getUserInfo()])
+  .then(([cardData, userData]) => {
+    section.renderItems(cardData);
+    userInfo.getUserInfo(userData);
+  })
+  .catch((err) => console.log(err));
+
+
 // экземпляр Section в контейнер
-const section = new Section({
-  items: initialCards.reverse(),
-  renderer: (item) =>  {
+const section = new Section(
+  (item) =>  {
     const card = createCard(item);
     section.addItem(card);
-  }
-}, containerCards);
+  }, containerCards);
 
 const createCard = (cardData) => {
   const cardElement = new Card (cardData, '#card-template', (image) => {
@@ -55,16 +74,19 @@ const popupEdit = new PopupWithForm('.popup_type_edit', (inputValues) => {
 })
 popupEdit.setEventListeners();
 
-const popupAdd = new PopupWithForm('.popup_type_add', (inputValues) => {
-  const cardData = {
-    name: inputValues['element-place'],
-    link: inputValues['element-src']
-  }
-  const card = createCard(cardData);
-  section.addItem(card);
-  addCardValidation.disableSubmitButton();
-  popupAdd.close();
+const popupAdd = new PopupWithForm('.popup_type_add',
+ (inputValues) => {
+    api.addCard(inputValues)
+    .then((newCardData) => {
+      const card = createCard(newCardData);
+      console.log(newCardData);
+      section.addItem(card);
+      addCardValidation.disableSubmitButton();
+      popupAdd.close();
+  }).catch(err => console.log(`карточка не добавилась. ${err}`))
 });
+
+
 popupAdd.setEventListeners();
 
 const popupPicture = new PopupWithImage('.popup_type_image');
@@ -84,7 +106,3 @@ buttonAdd.addEventListener("click", () => {
   addCardValidation.resetValidation();
   popupAdd.open();
 });
-
-
-//начальный сет карточек
-section.renderItems();

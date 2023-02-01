@@ -1,10 +1,4 @@
-// объявление массива карточек
-const tokyo = new URL("../images/elements/elements__tokyo.jpg", import.meta.url);
-const tbilisi = new URL('../images/elements/elements__tbilisi.jpg', import.meta.url);
-const london = new URL('../images/elements/elements__london.jpg', import.meta.url);
-const erevan = new URL('../images/elements/elements__erevan.jpg', import.meta.url);
-const newYork = new URL('../images/elements/elements__newYork.jpg', import.meta.url);
-const bordo = new URL('../images/elements/elements__bordo.jpg', import.meta.url);
+
 
 // объект с селекторами и классами
 export const configValidation = {
@@ -16,32 +10,6 @@ export const configValidation = {
   errorClass: 'popup__error'
 }
 
-export const initialCards = [
-  {
-    name: 'Токио',
-    link: tokyo,
-  },
-  {
-    name: 'Тбилиси',
-    link: tbilisi,
-  },
-  {
-    name: 'Лондон',
-    link: london,
-  },
-  {
-    name: 'Ереван',
-    link: erevan,
-  },
-  {
-    name: 'Нью-Йорк',
-    link: newYork,
-  },
-  {
-    name: 'Бордо',
-    link: bordo,
-  },
-];
 
 //контейнер
 export const containerCards = document.querySelector('.elements');
