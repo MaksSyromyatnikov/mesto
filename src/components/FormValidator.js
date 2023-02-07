@@ -82,4 +82,11 @@ export class FormValidator {
     this._setEventListeners();
   };
 
+
+  checkPopupBeforeOpen() {
+    this.toggleButtonState();
+    this._inputList.forEach((inputElement) => {
+      this._hideInputError(inputElement);
+    });
+  }
 }

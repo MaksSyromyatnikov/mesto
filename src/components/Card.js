@@ -57,7 +57,6 @@ export default class Card {
   }
 
   toggleLikeCard () {
-    //this._buttonCardLike.classList.toggle('elements__button-like_state-active');
 
     this.isLiked()
     ? this._buttonCardLike.classList.add("elements__button-like_state-active")

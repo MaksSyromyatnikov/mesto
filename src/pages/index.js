@@ -13,6 +13,8 @@ import {
   buttonAdd,
   popupEditProfile,
   buttonEdit,
+  buttonEditAvatar,
+  popupAvatar,
   inputDescription,
   inputName,
   configValidation
@@ -23,9 +25,13 @@ let userId;
 // 2 формы валидации из класса
 const addCardValidation = new FormValidator(configValidation, popupAddCard);
 const profileEditValidation = new FormValidator(configValidation, popupEditProfile);
+const profileAvatarValidation = new FormValidator(configValidation, popupAvatar);
+
+
 
 addCardValidation.enableValidation();
 profileEditValidation.enableValidation();
+profileAvatarValidation.enableValidation();
 
 
 // конфиг с токеном
@@ -71,30 +77,56 @@ const createCard = (cardData) => {
 // изначальный userInfo
 
 const userInfo = new Userinfo({
-  name: '.profile__name',
-  description: '.profile__description',
-  avatar: '.profile__avatar'
+  profileSelector: '.profile__name',
+  profileDescription: '.profile__description',
+  profileAvatar: '.profile__avatar'
 });
 
 // Создаём попапы
-const popupEdit = new PopupWithForm('.popup_type_edit', (inputValues) => {
-  userInfo.setUserInfo(inputValues);
-  popupEdit.close();
-})
+const popupEdit = new PopupWithForm('.popup_type_edit',
+  (data) => {
+    popupEdit.showLoading(true);
+    api
+    .editUserInfo(data['profile-name'], data['profile-job'])
+    .then((newUserData) => {
+      userInfo.setUserInfo(newUserData);
+      popupEdit.close();
+    })
+    .catch ((err) => console.log(err))
+    .finally(() => popupEdit.showLoading(false));
+  }
+)
 popupEdit.setEventListeners();
 
+// попап на смену аватара
+const popupEditAvatar = new PopupWithForm('.popup_type_avatar',
+  (data) => {
+    popupEditAvatar.showLoading(true);
+    api.editAvatar(data['profile-avatar'])
+    .then((res) => {
+      userInfo.setUserAvatar(res.avatar);
+      popupAvatar.close();
+    })
+    .catch ((err) => console.log(err))
+    .finally(() => popupEditAvatar.showLoading(false));
+})
+popupEditAvatar.setEventListeners();
+
+
+// попап на добавление карточки
 const popupAdd = new PopupWithForm('.popup_type_add',
- (inputValues) => {
+ (data) => {
     popupAdd.showLoading(true);
-    api.addCard(inputValues)
+    api.addCard(data['element-place'],data['element-src'])
     .then((newCardData) => {
-      const card = createCard(newCardData);
-      section.addItem(card);
+      section.addItem(createCard(newCardData));
       addCardValidation.disableSubmitButton();
       popupAdd.close();
-  }).catch(err => console.log(`карточка не добавилась. ${err}`))
-});
+  })
+  .catch(err => console.log(`карточка не добавилась. ${err}`))
+  .finally(() => popupAdd.showLoading(false));
 
+});
 
 popupAdd.setEventListeners();
 
@@ -138,16 +170,27 @@ const handleDeleteCard = (card, cardId) => {
 };
 
 
-// добавление слушателей
+// добавление слушателей. Открытие изменения профиля
 buttonEdit.addEventListener("click", () => {
-  const currentUser = userInfo.getUserInfo();
-  inputName.value = currentUser.name;
-  inputDescription.value = currentUser.description;
+  const data = userInfo.getUserInfo();
+  inputName.value = data.name;
+  inputDescription.value = data.description;
   profileEditValidation.resetValidation();
   popupEdit.open();
 });
 
+// Открытие попапа изменения аватарки
+buttonEditAvatar.addEventListener('click', () => {
+  profileAvatarValidation.checkPopupBeforeOpen();
+  profileAvatarValidation.resetValidation();
+  console.log(popupEditAvatar);
+  popupEditAvatar.open();
+})
+
+// открытие попапа добавление карточки
 buttonAdd.addEventListener("click", () => {
   addCardValidation.resetValidation();
   popupAdd.open();
 });
+
+
