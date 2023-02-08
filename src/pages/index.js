@@ -50,7 +50,8 @@ Promise.all([api.getInitialCards(), api.getUserInfo()])
   .then(([cardData, userData]) => {
     userId = userData._id;
     section.renderItems(cardData);
-    userInfo.getUserInfo(userData);
+    userInfo.setUserInfo(userData);
+    userInfo.setUserAvatar(userData.avatar);
   })
   .catch((err) => console.log(err));
 
@@ -59,7 +60,7 @@ Promise.all([api.getInitialCards(), api.getUserInfo()])
 const section = new Section(
   (item) =>  {
     const card = createCard(item);
-    section.addItem(card);
+    section.appendItem(card);
   }, containerCards);
 
 const createCard = (cardData) => {
