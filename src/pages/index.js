@@ -105,7 +105,7 @@ const popupEditAvatar = new PopupWithForm('.popup_type_avatar',
     api.editAvatar(data['profile-avatar'])
     .then((res) => {
       userInfo.setUserAvatar(res.avatar);
-      popupAvatar.close();
+      popupEditAvatar.close();
     })
     .catch ((err) => console.log(err))
     .finally(() => popupEditAvatar.showLoading(false));
@@ -155,6 +155,7 @@ const handleLikeCard = (card, cardId) => {
 // обработка удаления
 
 const handleDeleteCard = (card, cardId) => {
+
   popupConfirm.open();
   popupConfirm.setSubmitHandler(() => {
     popupConfirm.showLoading(true);
@@ -183,7 +184,6 @@ buttonEdit.addEventListener("click", () => {
 buttonEditAvatar.addEventListener('click', () => {
   profileAvatarValidation.checkPopupBeforeOpen();
   profileAvatarValidation.resetValidation();
-  console.log(popupEditAvatar);
   popupEditAvatar.open();
 })
 
